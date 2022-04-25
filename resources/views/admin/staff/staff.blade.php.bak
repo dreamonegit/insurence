@@ -37,19 +37,19 @@
 						@endif
 						<div class="form-group">
 						  <label>Staff Name</label>
-						  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name" value="@if(isset($user)){{ $user->name }} @endif">
+						  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name" value="@if($user){{ $user->name }} @endif">
 						</div>
 						<div class="form-group">
 						  <label>E-mail</label>
-						  <input type="email" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail" value="@if(isset($user)){{ $user->email }} @endif">
+						  <input type="email" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail" value="@if($user){{ $user->email }} @endif">
 						</div>
 						<div class="form-group">
 						  <label>Mobile</label>
-						  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Mobile" aria-label="Mobile" value="@if(isset($user)){{ $user->mobile }} @endif">
+						  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Mobile" aria-label="Mobile" value="@if($user){{ $user->mobile }} @endif">
 						</div>
 						<div class="form-group">
 						  <label>Password</label>
-						  <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" value="@if(isset($user)){{ $user->plain }} @endif">
+						  <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" value="@if($user){{ $user->plain }} @endif">
 						</div>
 						<div class="form-group">
 						  <label>Profile Image</label>
@@ -59,8 +59,8 @@
 						  <label for="exampleFormControlSelect1">Status</label>
 						  <select class="form-control form-control-lg" id="status" name="status">
 							<option value="">------Choose Option------</option>
-							<option value="1" @if(isset($user))@if($user->status==1) {{ "selected" }} @endif @endif>Active</option>
-							<option value="0"  @if(isset($user))@if($user->status==0) {{ "selected" }} @endif @endif>In-Active</option>
+							<option value="1" @if($user)@if($user->status==1) {{ "selected" }} @endif @endif>Active</option>
+							<option value="0"  @if($user)@if($user->status==0) {{ "selected" }} @endif @endif>In-Active</option>
 						  </select>
 						</div>
 						<div class="form-group">
