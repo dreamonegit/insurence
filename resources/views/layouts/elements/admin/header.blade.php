@@ -22,6 +22,9 @@
 	.form-control {
 		border: 1px solid #d1dae2!important;
 	}
+	.error{
+		color:red;
+	}
 	</style>
   </head>
   <body>

@@ -25,63 +25,63 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-				  
+					@if (\Session::has('message'))
+						<div class="alert alert-success">
+							<ul>
+								<li>{!! \Session::get('message') !!}</li>
+							</ul>
+						</div>
+					@endif
                     <div class="table-responsive">
                       <table class="table" id="liststaffTable">
                         <thead>
                           <tr>
-                            <th> Assignee </th>
-                            <th> Subject </th>
+                            <th> ID </th>
+                            <th> Name </th>
+							<th> Image </th>
+                            <th> Mobile </th>
+                            <th> E-mail </th>
                             <th> Status </th>
-                            <th> Last Update </th>
-                            <th> Tracking ID </th>
+							<th> Action </th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> David Grey
-                            </td>
-                            <td> Fund is not recieved </td>
-                            <td>
-                              <label class="badge badge-gradient-success">DONE</label>
-                            </td>
-                            <td> Dec 5, 2017 </td>
-                            <td> WD-12345 </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face2.jpg') }}" class="me-2" alt="image"> Stella Johnson
-                            </td>
-                            <td> High loading time </td>
-                            <td>
-                              <label class="badge badge-gradient-warning">PROGRESS</label>
-                            </td>
-                            <td> Dec 12, 2017 </td>
-                            <td> WD-12346 </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face3.jpg') }}" class="me-2" alt="image"> Marina Michel
-                            </td>
-                            <td> Website down for one week </td>
-                            <td>
-                              <label class="badge badge-gradient-info">ON HOLD</label>
-                            </td>
-                            <td> Dec 16, 2017 </td>
-                            <td> WD-12347 </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face4.jpg') }}" class="me-2" alt="image"> John Doe
-                            </td>
-                            <td> Loosing control on server </td>
-                            <td>
-                              <label class="badge badge-gradient-danger">REJECTED</label>
-                            </td>
-                            <td> Dec 3, 2017 </td>
-                            <td> WD-12348 </td>
-                          </tr>
+						@if($user->isNotEmpty($user))
+							
+							@foreach($user as $userval)
+							  <tr>
+								  <td>
+									{{ $userval->id }}
+								  </td>
+								  <td>
+									{{ $userval->name }}
+								  </td>
+
+								<td>
+								
+								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="me-2" alt="image"> David Grey
+								</td>
+								  <td>
+									{{ $userval->mobile }}
+								  </td>
+
+								  <td>
+									{{ $userval->email }}
+								  </td>
+
+								  <td>
+									@if($userval->status==0)
+										<label class="badge badge-success">Active</label>
+									@else
+										<label class="badge badge-danger">In-Active</label>
+									@endif
+								  </td>
+								  <td>
+									<a href="{{ url('/admin/edit-staff/'.$userval->id) }}"><label class="badge badge-info">Edit</label></a>
+								  </td>
+							  </tr>
+							@endforeach
+						@endif
                         </tbody>
                       </table>
                     </div>

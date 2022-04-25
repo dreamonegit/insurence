@@ -1,4 +1,5 @@
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
 	<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <!-- endinject -->

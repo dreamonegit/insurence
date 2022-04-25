@@ -18,22 +18,50 @@
                 </ol>
               </nav>
             </div>
+			@if ($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
             <div class="row">
               <div class="col-md-10 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-					<form method="post">
+					<form id="staff-form" action="{{ url('/admin/save-staff') }}" method="POST" enctype="multipart/form-data">@csrf
+						@if(isset($user))
+							<input type="hidden" name="hid" value="{{ $user->id }}"> 
+						@endif
 						<div class="form-group">
 						  <label>Staff Name</label>
-						  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name">
+						  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name" value="@if($user){{ $user->name }} @endif">
 						</div>
 						<div class="form-group">
 						  <label>E-mail</label>
-						  <input type="text" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail">
+						  <input type="email" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail" value="@if($user){{ $user->email }} @endif">
 						</div>
 						<div class="form-group">
 						  <label>Mobile</label>
-						  <input type="text" class="form-control form-control-lg" name="mobile" placeholder="Mobile" aria-label="Mobile">
+						  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Mobile" aria-label="Mobile" value="@if($user){{ $user->mobile }} @endif">
+						</div>
+						<div class="form-group">
+						  <label>Password</label>
+						  <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" value="@if($user){{ $user->plain }} @endif">
+						</div>
+						<div class="form-group">
+						  <label>Profile Image</label>
+						  <input type="file" class="form-control form-control-lg" name="profile_image">
+						</div>
+						<div class="form-group">
+						  <label for="exampleFormControlSelect1">Status</label>
+						  <select class="form-control form-control-lg" id="status" name="status">
+							<option value="">------Choose Option------</option>
+							<option value="1" @if($user)@if($user->status==1) {{ "selected" }} @endif @endif>Active</option>
+							<option value="0"  @if($user)@if($user->status==0) {{ "selected" }} @endif @endif>In-Active</option>
+						  </select>
 						</div>
 						<div class="form-group">
 						  <button type="submit" class="btn btn-outline-primary btn-fw" style="width:10%;margin-left: 84%;">Save</button>
@@ -57,4 +85,27 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-@include('layouts.elements.admin.plugins')
+	@include('layouts.elements.admin.plugins')
+	<script>
+		 $('#staff-form').validate({ // initialize the plugin
+			ignore: ".ignore",
+			rules: {
+				name: {
+					required: true
+				},
+				email: {
+				  required: true,
+				  email: true
+				},
+				mobile: {
+					required: true
+				},
+				password: {
+					required: true
+				},
+				status: {
+					required: true
+				}
+			}
+		});
+	</script>
