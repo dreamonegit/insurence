@@ -13,8 +13,6 @@
               <h3 class="page-title">Add Staff</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">List Staff</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Add Staff</li>
                 </ol>
               </nav>
             </div>
