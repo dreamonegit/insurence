@@ -57,7 +57,7 @@
 
 								<td>
 								
-								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle" alt="image">
+								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle">
 								</td>
 								  <td>
 									{{ $userval->mobile }}
@@ -68,9 +68,9 @@
 								  </td>
 
 								  <td>
-									@if($userval->status==0)
+									@if($userval->status==1)
 										<label class="badge badge-success">Active</label>
-									@else
+									@else($bannersval->status == '0')
 										<label class="badge badge-danger">In-Active</label>
 									@endif
 								  </td>

@@ -40,7 +40,8 @@
                             <th> Mobile </th>
                             <th> E-mail </th>
                             <th> Status </th>
-							<th> Action </th>
+							<th> Edit </th>
+							<th> Delete </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -57,7 +58,7 @@
 
 								<td>
 								
-								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle" alt="image">
+								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle">
 								</td>
 								  <td>
 									{{ $userval->mobile }}
