@@ -81,8 +81,4 @@ class AdminController extends Controller
 		$user->save();
 		return redirect('admin/list-staff')->with('message', 'Successfully staff added...'); 			
 	}
-	public function deletestaff($id){
-		$user = User::where('id',$id)->delete();
-		return redirect('/admin/list-staff')->withErrors(['sucessfully Deleted']);
-	}
 }

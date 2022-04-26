@@ -59,7 +59,7 @@
 
 								<td>
 								
-								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle" alt="image">
+								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="me-2" alt="image"> David Grey
 								</td>
 								  <td>
 									{{ $userval->mobile }}
