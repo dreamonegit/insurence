@@ -68,9 +68,9 @@
 								  </td>
 
 								  <td>
-									@if($userval->status==0)
+									@if($userval->status==1)
 										<label class="badge badge-success">Active</label>
-									@else
+									@else($bannersval->status == '0')
 										<label class="badge badge-danger">In-Active</label>
 									@endif
 								  </td>
