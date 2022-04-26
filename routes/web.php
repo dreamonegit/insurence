@@ -27,9 +27,9 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin']], function(
 	Route::get('/delete-staff/{id}', [App\Http\Controllers\AdminController::class, 'deletestaff'])->middleware('admin');
 	Route::post('/save-staff', [App\Http\Controllers\AdminController::class, 'savestaff'])->middleware('admin');
 	
-		Route::get('/list-clientdetails', [App\Http\Controllers\AdminController::class, 'listclientdetails'])->middleware('admin');
-	Route::get('/add-clientdetails', [App\Http\Controllers\AdminController::class, 'addclientdetails'])->middleware('admin');
-	Route::get('/edit-clientdetails/{id}', [App\Http\Controllers\AdminController::class, 'addstaff'])->middleware('admin');
-	Route::get('/delete-clientdetails/{id}', [App\Http\Controllers\AdminController::class, 'deleteclientdetails'])->middleware('admin');
-	Route::post('/save-clientdetails', [App\Http\Controllers\AdminController::class, 'saveclientdetails'])->middleware('admin');
+		Route::get('/list-customerdetails', [App\Http\Controllers\AdminController::class, 'listcustomerdetails'])->middleware('admin');
+	Route::get('/add-customerdetails', [App\Http\Controllers\AdminController::class, 'addcustomerdetails'])->middleware('admin');
+	Route::get('/edit-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'editcustomerdetails'])->middleware('admin');
+	Route::get('/delete-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'deletecustomerdetails'])->middleware('admin');
+	Route::post('/save-customerdetails', [App\Http\Controllers\AdminController::class, 'savecustomerdetails'])->middleware('admin');
 });

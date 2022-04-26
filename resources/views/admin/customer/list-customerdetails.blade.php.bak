@@ -10,7 +10,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List Staff </h3>
+              <h3 class="page-title"> List customer details </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                 </ol>
@@ -18,7 +18,7 @@
             </div>
             <div class="row">
 				<div style="width:10%;margin-left: 84%;">
-					<a href="{{ url('admin/add-staff') }}" class="p-3 btn btn-outline-success btn-fw">Add Staff</a>
+					<a href="{{ url('admin/add-customerdetails') }}" class="p-3 btn btn-outline-success btn-fw">Add customer</a>
 				</div>
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -36,55 +36,62 @@
                           <tr>
                             <th> ID </th>
                             <th> Name </th>
-							<th> Image </th>
                             <th> Mobile </th>
                             <th> E-mail </th>
+							<th> Country </th>
+                            <th> State </th>
+							 <th> City </th>
+							<th> Address </th>
                             <th> Status </th>
 							<th> Edit </th>
 							<th> Delete </th>
                           </tr>
                         </thead>
                         <tbody>
-						@if($user->isNotEmpty($user))
+			
 							
-							@foreach($user as $userval)
+							@foreach($customers as $customersval)
 							  <tr>
 								  <td>
-									{{ $userval->id }}
+									{{ $customersval->id }}
 								  </td>
 								  <td>
-									{{ $userval->name }}
+									{{ $customersval->first_name }}
 								  </td>
-
-								<td>
-								
-								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle">
-								</td>
 								  <td>
-									{{ $userval->mobile }}
+									{{ $customersval->mobile }}
 								  </td>
-
-								  <td>
-									{{ $userval->email }}
+                                   <td>
+									{{ $customersval->email }}
 								  </td>
-
 								  <td>
-									@if($userval->status==1)
+									{{ $customersval->country }}
+								  </td>
+								  <td>
+									{{ $customersval->state }}
+								  </td>
+								  <td>
+									{{ $customersval->city }}
+								  </td>
+								  <td>
+									{{ $customersval->address }}
+								  </td>
+                                  <td>
+									@if($customersval->status==1)
 										<label class="badge badge-success">Active</label>
-									@else($userval->status == '0')
+									@else($customersval->status == '0')
 										<label class="badge badge-danger">In-Active</label>
 									@endif
 								  </td>
 								  <td>
-									<a href="{{ url('/admin/edit-staff/'.$userval->id) }}"><label class="badge badge-info">Edit</label></a>
+									
 								  </td>
 		                            <td>
-									<a href="{{ url('/admin/delete-staff/'.$userval->id) }}"><label class="badge badge-danger">Delete</label></a>
+									<a href="{{ url('/admin/delete-customerdetails/'.$customersval->id) }}"><label class="badge badge-danger">Delete</label></a>
 									</td>
 							  </tr>
 							@endforeach
-						@endif
-                        </tbody>
+				         </tbody>
                       </table>
                     </div>
                   </div>

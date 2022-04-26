@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Storage;
 use DB;
 use App\Models\User;
+use App\Models\Customers;
 use Session;
 use Redirect;
 use Auth, Validator, Response;
@@ -20,6 +21,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+		$this->customers = new Customers();
     }
 
     /**
@@ -80,5 +82,40 @@ class AdminController extends Controller
 			}
 		$user->save();
 		return redirect('admin/list-staff')->with('message', 'Successfully staff added...'); 			
+	}
+	public function deletestaff($id){
+		$user = User::where('id',$id)->delete();
+		return redirect('/admin/list-staff')->withErrors(['sucessfully staff Deleted']);
+	}
+	public function listcustomerdetails(){
+	$this->data["customers"] = $this->customers->get();
+	return view('admin.customer.list-customerdetails',$this->data);
+	}
+	public function addcustomerdetails(){
+		
+	return view('admin.customer.add-customerdetails');
+	}
+	public function savecustomerdetails(Request $request){
+        if ($request->input("hid") != 0) {
+            $customers = Customers::where("id", $request->input("hid"))->first();
+        } else {
+            $customers = new Customers();
+        }		
+        $customers->first_name = $request->input('first_name');		
+		$customers->last_name = $request->input('last_name');
+		$customers->mobile = $request->input('mobile');
+        $customers->email = $request->input('email');		
+		$customers->address = $request->input('address');
+		$customers->city = $request->input('city');
+        $customers->state = $request->input('state');		
+		$customers->country = $request->input('country');
+		$customers->status = $request->input('status');
+        $customers->save();
+		return redirect('/admin/list-customerdetails')->with('message', 'successfully customer details added...');	
+	}
+
+	public function deletecustomerdetails($id){
+		$customers = Customers::where('id',$id)->delete();
+		return redirect('/admin/list-customerdetails')->withErrors(['sucessfully customer details Deleted']);
 	}
 }
