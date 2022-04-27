@@ -8,6 +8,11 @@ use Storage;
 use DB;
 use App\Models\User;
 use App\Models\Customers;
+use App\Models\Insurance;
+use App\Models\Motorinsurance;
+use App\Models\Healthinsurance;
+
+
 use Session;
 use Redirect;
 use Auth, Validator, Response;
@@ -31,15 +36,24 @@ class InsuranceController extends Controller
      */
     public function index()
     {
-        return view('insurance.stepone');
+    	if(empty(Session::get('customer_id')))
+    	{
+    		return view('insurance.stepone');
+    	}
+    	else
+    	{
+    		$this->data["customers"] = Customers::where("id", Session::get('customer_id'))->first();
+    		return view('insurance.stepone',$this->data);
+    	}
+
     }
 
 
     public function savecustomerdetails(Request $request){
-        if ($request->input("hid") != 0) {
-            $customers = Customers::where("id", $request->input("hid"))->first();
+        if(empty(Session::get('customer_id'))){
+        	$customers = new Customers();
         } else {
-            $customers = new Customers();
+            $customers = Customers::where("id", Session::get('customer_id'))->first();
         }		
         $customers->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');
@@ -51,7 +65,9 @@ class InsuranceController extends Controller
 		$customers->country = $request->input('country');
 		$customers->status = $request->input('status');
         $customers->save();
-		return redirect('/admin/select-insurance');	
+		Session::put('customer_id', $customers->id);
+
+		return redirect('/insurance/select-insurance');	
 	}
 
 
@@ -60,11 +76,95 @@ class InsuranceController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function selectinsurance()
+    public function selectinsurance(Request $request)
     {
-        return view('insurance.steptwo');
+    	//save here
+    	if(empty(Session::get('insurance_type')))
+    	{
+    		return view('insurance.steptwo');
+    	}
+    	else
+    	{
+    		$this->data["insurance"] = Insurance::where("id", Session::get('insurance_type'))->first();
+
+        	return view('insurance.steptwo',$this->data);
+        }
     }
 
 
+    public function saveselectinsurance(Request $request){
+        if(empty(Session::get('insurance_type'))){
+        	$Insurance = new Insurance();
+        } else {
+            $Insurance = Insurance::where("id", Session::get('insurance_type'))->first();
+        }		
+      
+      	$Insurance->customer_id = Session::get('customer_id');
+		$Insurance->insurance_type = $request->input('insurance_type');
+		$Insurance->status = '0';
+        $Insurance->save();
+
+        Session::put('insurance_type', $Insurance->id);
+
+        //check type and redirect
+        if($request->input('insurance_type') == '1')
+        {
+        	return redirect('/insurance/health-insurance');	
+        }
+        else if($request->input('insurance_type') == '2')
+        {
+        	return redirect('/insurance/motor-insurance');	
+        }
+        else
+        {
+
+        }
+	}
+
+
+	public function healthinsurance(Request $request)
+    {
+    	//save here
+    	return view('insurance.health');
+    }
+
+    public function motorinsurance(Request $request)
+    {
+    	//save here
+    	return view('insurance.motor');
+    }
+
+
+    public function savehealthinsurance(Request $request){
+        
+        $healthinsurance = new Healthinsurance();      
+      	$healthinsurance->insurance_type_id = Session::get('insurance_type');
+		$healthinsurance->insurance_type = $request->input('insurance_type');
+		$healthinsurance->previous_year = $request->input('previous_year');
+		$healthinsurance->remarks = $request->input('remarks');
+		$healthinsurance->status = '1';
+        $healthinsurance->save();
+
+        return redirect('/insurance/insurance-complete');	
+	}
+
+
+	 public function savemotorinsurance(Request $request){
+        
+        $motorinsurance = new Motorinsurance();   
+        $motorinsurance->insurance_type_id = Session::get('insurance_type');   
+      	$motorinsurance->insurance_type = Session::get('insurance_type');
+		$motorinsurance->vehicle_type = $request->input('vehicle_type');
+		$motorinsurance->previous_year = $request->input('previous_year');
+		$motorinsurance->remarks = $request->input('remarks');
+        $motorinsurance->save();
+
+        return redirect('/insurance/insurance-complete');	
+	}
+
+	public function insurance_complete(Request $request)
+    {
+    	return view('insurance.complete');
+    }
 
 }

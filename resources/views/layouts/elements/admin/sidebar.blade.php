@@ -33,7 +33,7 @@
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="{{ url('admin/add-insurance') }}">
+              <a class="nav-link" href="{{ url('insurance/add-insurance') }}">
                 <span class="menu-title">Create Insurance</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>

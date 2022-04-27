@@ -10,11 +10,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/insurance/save-insurance-type') }}" method="POST">
+            <form action="#" method="POST">
                 @csrf
 
                   <div class="card">
-                    <div class="card-header">Step 2: Insurance Type</div>
+                    <div class="card-header">Step 4: Finish</div>
   
                     <div class="card-body">
   
@@ -28,25 +28,18 @@
                                 </div>
                             @endif
   
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Insurance Type {{ $insurance->insurance_type }}</label>
-                                  <select class="form-control form-control-lg" id="insurance_type" name="insurance_type">
-                                    <option value="">------Choose Option------</option>
-                                    <option value="1" @if(isset($insurance))@if($insurance->insurance_type==1) {{ "selected" }} @endif @endif >Health Insurance</option>
-                                    <option value="2" @if(isset($insurance))@if($insurance->insurance_type==2) {{ "selected" }} @endif @endif >Motor Insurance</option>
-                                  </select>
-                            </div>
+                          <p>Successfully created</p>
                        
                     </div>
                     <div class="card-footer">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-6 text-left">
-                                <a href="{{ route('addinsurence') }}" class="btn btn-danger pull-right">Previous</a>
+                                <a href="{{ route('selectinsurence') }}" class="btn btn-danger pull-right">Previous</a>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button type="submit" class="btn btn-primary">Next</button>
+                                <button type="submit" class="btn btn-primary">Finish</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </form>

@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/admin/save-customerdetails') }}" method="POST">
+            <form action="{{ url('/insurance/save-customerdetails') }}" method="POST">
                 @csrf
   
                 <div class="card">
