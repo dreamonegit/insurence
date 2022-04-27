@@ -27,9 +27,10 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin']], function(
 	Route::get('/delete-staff/{id}', [App\Http\Controllers\AdminController::class, 'deletestaff'])->middleware('admin');
 	Route::post('/save-staff', [App\Http\Controllers\AdminController::class, 'savestaff'])->middleware('admin');
 	
-		Route::get('/list-customerdetails', [App\Http\Controllers\AdminController::class, 'listcustomerdetails'])->middleware('admin');
+	Route::get('/list-customerdetails', [App\Http\Controllers\AdminController::class, 'listcustomerdetails'])->middleware('admin');
 	Route::get('/add-customerdetails', [App\Http\Controllers\AdminController::class, 'addcustomerdetails'])->middleware('admin');
 	Route::get('/edit-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'editcustomerdetails'])->middleware('admin');
 	Route::get('/delete-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'deletecustomerdetails'])->middleware('admin');
 	Route::post('/save-customerdetails', [App\Http\Controllers\AdminController::class, 'savecustomerdetails'])->middleware('admin');
+	Route::post('/cities', [App\Http\Controllers\AdminController::class, 'cities'])->middleware('admin');
 });

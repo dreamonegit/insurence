@@ -8,6 +8,7 @@ use Storage;
 use DB;
 use App\Models\User;
 use App\Models\Customers;
+use App\Models\State;
 use Session;
 use Redirect;
 use Auth, Validator, Response;
@@ -22,6 +23,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
 		$this->customers = new Customers();
+		$this->state = new State();
     }
 
     /**
@@ -92,8 +94,8 @@ class AdminController extends Controller
 	return view('admin.customer.list-customerdetails',$this->data);
 	}
 	public function addcustomerdetails(){
-		
-	return view('admin.customer.add-customerdetails');
+    $this->data["state"] = $this->state->get();	
+	return view('admin.customer.add-customerdetails',$this->data);
 	}
 	public function savecustomerdetails(Request $request){
         if ($request->input("hid") != 0) {
@@ -101,7 +103,7 @@ class AdminController extends Controller
         } else {
             $customers = new Customers();
         }		
-        $customers->first_name = $request->input('first_name');		
+        $customers ->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');
 		$customers->mobile = $request->input('mobile');
         $customers->email = $request->input('email');		
@@ -116,6 +118,7 @@ class AdminController extends Controller
      public function editcustomerdetails($id)
     {
         $this->data["customers"] = $this->customers->where("id", $id)->first();
+		$this->data["state"] = $this->state->get();	
         return view('admin.customer.add-customerdetails',$this->data);
     }
 	public function deletecustomerdetails($id){
