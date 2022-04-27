@@ -26,11 +26,36 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin']], function(
 	Route::get('/edit-staff/{id}', [App\Http\Controllers\AdminController::class, 'addstaff'])->middleware('admin');
 	Route::get('/delete-staff/{id}', [App\Http\Controllers\AdminController::class, 'deletestaff'])->middleware('admin');
 	Route::post('/save-staff', [App\Http\Controllers\AdminController::class, 'savestaff'])->middleware('admin');
+	Route::post('/state', [App\Http\Controllers\AdminController::class, 'state'])->middleware('admin');
 	
 	Route::get('/list-customerdetails', [App\Http\Controllers\AdminController::class, 'listcustomerdetails'])->middleware('admin');
 	Route::get('/add-customerdetails', [App\Http\Controllers\AdminController::class, 'addcustomerdetails'])->middleware('admin');
 	Route::get('/edit-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'editcustomerdetails'])->middleware('admin');
 	Route::get('/delete-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'deletecustomerdetails'])->middleware('admin');
 	Route::post('/save-customerdetails', [App\Http\Controllers\AdminController::class, 'savecustomerdetails'])->middleware('admin');
-	Route::post('/cities', [App\Http\Controllers\AdminController::class, 'cities'])->middleware('admin');
+
+});
+
+
+Route::group(['prefix' => 'insurance',  'middleware' => ['auth','admin']], function(){
+	Route::post('/save-customerdetails', [App\Http\Controllers\InsuranceController::class, 'savecustomerdetails']);
+	Route::post('/state', [App\Http\Controllers\Controllers::class, 'state']);
+	Route::get('/add-insurance', [App\Http\Controllers\InsuranceController::class, 'index'])->name('addinsurence');
+	
+
+
+
+	Route::get('/select-insurance', [App\Http\Controllers\InsuranceController::class, 'selectinsurance'])->name('selectinsurence');
+	Route::post('/save-insurance-type', [App\Http\Controllers\InsuranceController::class, 'saveselectinsurance']);
+
+
+	Route::get('/health-insurance', [App\Http\Controllers\InsuranceController::class, 'healthinsurance'])->name('healthinsurance');
+	Route::get('/motor-insurance', [App\Http\Controllers\InsuranceController::class, 'motorinsurance'])->name('motorinsurance');
+
+
+	Route::post('/save-health-insurance', [App\Http\Controllers\InsuranceController::class, 'savehealthinsurance']);
+	Route::post('/save-motor-insurance', [App\Http\Controllers\InsuranceController::class, 'savemotorinsurance']);
+
+
+	Route::get('/insurance-complete', [App\Http\Controllers\InsuranceController::class, 'insurance_complete'])->name('insurance_complete');
 });
