@@ -44,7 +44,8 @@ class InsuranceController extends Controller
     	else
     	{
     		$this->data["customers"] = Customers::where("id", Session::get('customer_id'))->first();
-    		return view('insurance.stepone');
+			$this->data["state"] = $this->state->get();
+    		return view('insurance.stepone',$this->data);
     	}
 
     }
