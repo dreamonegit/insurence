@@ -43,17 +43,16 @@
 							 <th> City </th>
 							<th> Address </th>
                             <th> Status </th>
-							<th> Edit </th>
-							<th> Delete </th>
+							<th> Action </th>
                           </tr>
                         </thead>
                         <tbody>
 			
-							
 							@foreach($customers as $customersval)
+							  
 							  <tr>
 								  <td>
-									{{ $customersval->id }}
+									{{ $loop->iteration  }}
 								  </td>
 								  <td>
 									{{ $customersval->first_name }}
@@ -88,9 +87,10 @@
 									@endif
 								  </td>
 								  <td>
-									<a href="{{ url('/admin/edit-customerdetails/'.$customersval->id) }}"><label class="badge badge-info">Edit</label></a>
-								  </td>
-		                            <td>
+									<!-- <a href="{{ url('/admin/edit-customerdetails/'.$customersval->id) }}"><label class="badge badge-info">View</label></a> -->
+
+									<a href="{{ url('/customer/view-customer/'.$customersval->id) }}"><label class="badge badge-info">View</label></a>
+
 									<a href="{{ url('/admin/delete-customerdetails/'.$customersval->id) }}"><label class="badge badge-danger">Delete</label></a>
 									</td>
 							  </tr>

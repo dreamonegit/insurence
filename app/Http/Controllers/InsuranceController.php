@@ -64,7 +64,7 @@ class InsuranceController extends Controller
 		$customers->city = $request->input('city');
         $customers->state = $request->input('state');		
 		$customers->country = $request->input('country');
-		$customers->status = $request->input('status');
+		$customers->status = '0';
         $customers->save();
 		Session::put('customer_id', $customers->id);
 
@@ -146,6 +146,17 @@ class InsuranceController extends Controller
 		$healthinsurance->status = '1';
         $healthinsurance->save();
 
+
+        if(Session::get('customer_id')){
+            $customers = Customers::where("id", Session::get('customer_id'))->first();
+        } 
+        
+        $customers->status = '1';
+        $customers->save();
+
+        Session::put('insurance_type', '');
+        Session::put('customer_id', '');
+
         return redirect('/insurance/insurance-complete');	
 	}
 
@@ -159,6 +170,16 @@ class InsuranceController extends Controller
 		$motorinsurance->previous_year = $request->input('previous_year');
 		$motorinsurance->remarks = $request->input('remarks');
         $motorinsurance->save();
+
+        if(Session::get('customer_id')){
+            $customers = Customers::where("id", Session::get('customer_id'))->first();
+        } 
+        
+        $customers->status = '1';
+        $customers->save();
+
+        Session::put('insurance_type', '');
+        Session::put('customer_id', '');
 
         return redirect('/insurance/insurance-complete');	
 	}
