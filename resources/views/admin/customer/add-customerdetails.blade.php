@@ -50,12 +50,20 @@
 						  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
 						</div>
 						<div class="form-group">
-						  <label>Country</label>
-						  <input type="text" class="form-control form-control-lg" name="country" placeholder="Enter the Country" aria-label="Country" value="@if(isset($customers)){{ $customers->country }} @endif">
+						<label>Country</label>
+			           <select class="form-control form-control-lg" id="countries" name="country">
+				        <option value="">---choose the Country ---</option>
+						  <option value="1" @if(isset($customers))@if($customers->country==1) {{ "selected" }} @endif @endif>India</option>
+						  </select>
 						</div>
-						<div class="form-group">
+	                     <div class="form-group">
 						  <label>State</label>
-						  <input type="text" class="form-control form-control-lg" name="state" placeholder="Enter the State" aria-label="State" value="@if(isset($customers)){{ $customers->state }} @endif">
+						  <select class="form-control form-control-lg" id="state" name="state">
+						  <option value="">---choose the State ---</option>
+						    @foreach($state as $statesvalue)
+						   <option value="{{ $statesvalue->id}}" @if(isset($customers))@if($customers->state==$statesvalue->id) {{ "selected" }} @endif @endif>{{ $statesvalue->StateName }} </option>
+						   @endforeach
+						  </select>
 						</div>
 						<div class="form-group">
 						  <label>City</label>
@@ -114,12 +122,6 @@
 					required: true
 				},
 				city: {
-					required: true
-				},
-				state: {
-					required: true
-				},
-				country: {
 					required: true
 				},
 				status: {

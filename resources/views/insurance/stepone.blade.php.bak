@@ -51,15 +51,7 @@
 						  <option value="1" @if(isset($customers))@if($customers->country==1) {{ "selected" }} @endif @endif>India</option>
 						  </select>
 						</div>
-	                     <div class="form-group">
-						  <label>State</label>
-						  <select class="form-control form-control-lg" id="state" name="state">
-						  <option value="">---choose the State ---</option>
-						    @foreach($state as $statesvalue)
-						   <option value="{{ $statesvalue->id}}" @if(isset($customers))@if($customers->state==$statesvalue->id) {{ "selected" }} @endif @endif>{{ $statesvalue->StateName }} </option>
-						   @endforeach
-						  </select>
-						</div>
+
                         <div class="form-group">
                           <label>City</label>
                           <input type="text" class="form-control form-control-lg" name="city" placeholder="Enter the City" aria-label="City" value="@if(isset($customers)){{ $customers->city }} @endif">

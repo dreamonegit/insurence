@@ -64,9 +64,13 @@
                                    <td>
 									{{ $customersval->email }}
 								  </td>
+                                 
 								  <td>
-									{{ $customersval->country }}
+									@if($customersval->country==1)
+									<label> India </label>
+								     @endif
 								  </td>
+
 								  <td>
 									{{ $customersval->state }}
 								  </td>
