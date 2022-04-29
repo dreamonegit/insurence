@@ -17,9 +17,9 @@
               </nav>
             </div>
             <div class="row">
-				<div style="width:10%;margin-left: 84%;">
+				<!-- <div style="width:10%;margin-left: 84%;">
 					<a href="{{ url('admin/add-customerdetails') }}" class="p-3 btn btn-outline-success btn-fw">Add customer</a>
-				</div>
+				</div> -->
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">

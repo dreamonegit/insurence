@@ -29,7 +29,7 @@
                             @endif
   
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Insurance Type {{ $insurance->insurance_type }}</label>
+                                <label for="exampleFormControlSelect1">Insurance Type</label>
                                   <select class="form-control form-control-lg" id="insurance_type" name="insurance_type">
                                     <option value="">------Choose Option------</option>
                                     <option value="1" @if(isset($insurance))@if($insurance->insurance_type==1) {{ "selected" }} @endif @endif >Health Insurance</option>
