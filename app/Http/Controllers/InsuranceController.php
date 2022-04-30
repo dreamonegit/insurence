@@ -11,6 +11,7 @@ use App\Models\Customers;
 use App\Models\Insurance;
 use App\Models\Motorinsurance;
 use App\Models\Healthinsurance;
+use App\Models\Life_insurance;
 use App\Models\State;
 use Session;
 use Redirect;
@@ -27,6 +28,7 @@ class InsuranceController extends Controller
         $this->middleware('auth');
 		$this->customers = new Customers();
 		$this->state = new State();
+
     }
 
     /**
@@ -51,6 +53,7 @@ class InsuranceController extends Controller
     }
 
     public function savecustomerdetails(Request $request){
+	
         if(empty(Session::get('customer_id'))){
         	$customers = new Customers();
         } else {
@@ -116,9 +119,9 @@ class InsuranceController extends Controller
         {
         	return redirect('/insurance/motor-insurance');	
         }
-        else
+        else if($request->input('insurance_type') == '3')
         {
-
+           return redirect('/insurance/life-insurance');
         }
 	}
 
@@ -134,20 +137,40 @@ class InsuranceController extends Controller
     	//save here
     	return view('insurance.motor');
     }
+    public function lifeinsurance(Request $request)
+    {
+    	//save here
+    	return view('insurance.life');
+    }
 
 
     public function savehealthinsurance(Request $request){
         
-        $healthinsurance = new Healthinsurance();      
+        $healthinsurance = new Healthinsurance(); 
+		
       	$healthinsurance->insurance_type_id = Session::get('insurance_type');
 		$healthinsurance->insurance_type = $request->input('insurance_type');
 		$healthinsurance->previous_year = $request->input('previous_year');
 		$healthinsurance->remarks = $request->input('remarks');
 		$healthinsurance->status = '1';
+		$image = $previous_documents = $other_documents = '';
+		if ($request->file('previous_document')) {
+			$image = $request->file('previous_document');
+			$previous_documents	= 'Previous_document'. time() . '_' . $image->getClientOriginalName();
+			$image_resize = Image::make($image->getRealPath());              
+			$image_resize->save(storage_path('app/public/healthpreviousdoc/'.$previous_documents));
+			$healthinsurance->previous_document = $previous_documents;
+			
+		}
+		if ($request->file('other_document')) {
+			$image = $request->file('other_document');
+			$other_documents = 'Other_document'. time() . '_' . $image->getClientOriginalName();
+			$image_resize = Image::make($image->getRealPath());              
+			$image_resize->save(storage_path('app/public/healthotherdoc/'.$other_documents));
+			$healthinsurance->other_document = $other_documents;
+		}
         $healthinsurance->save();
-
-
-        if(Session::get('customer_id')){
+          if(Session::get('customer_id')){
             $customers = Customers::where("id", Session::get('customer_id'))->first();
         } 
         
@@ -169,9 +192,63 @@ class InsuranceController extends Controller
 		$motorinsurance->vehicle_type = $request->input('vehicle_type');
 		$motorinsurance->previous_year = $request->input('previous_year');
 		$motorinsurance->remarks = $request->input('remarks');
+		$image = $previous_documents = $other_documents = '';
+		if ($request->file('previous_document')) {
+			$image = $request->file('previous_document');
+			$previous_documents	= 'Previous_document'. time() . '_' . $image->getClientOriginalName();
+			$image_resize = Image::make($image->getRealPath());              
+			$image_resize->save(storage_path('app/public/motorpreviousdoc/'.$previous_documents));
+			$motorinsurance->previous_document = $previous_documents;
+			
+		}
+		if ($request->file('other_document')) {
+			$image = $request->file('other_document');
+			$other_documents = 'Other_document'. time() . '_' . $image->getClientOriginalName();
+			$image_resize = Image::make($image->getRealPath());              
+			$image_resize->save(storage_path('app/public/motorotherdoc/'.$other_documents));
+			$motorinsurance->other_document = $other_documents;
+		}
         $motorinsurance->save();
 
         if(Session::get('customer_id')){
+            $customers = Customers::where("id", Session::get('customer_id'))->first();
+        } 
+        
+        $customers->status = '1';
+        $customers->save();
+
+        Session::put('insurance_type', '');
+        Session::put('customer_id', '');
+
+        return redirect('/insurance/insurance-complete');	
+	}
+    public function savelifeinsurance(Request $request){
+        
+        $life_insurance = new Life_insurance(); 
+		
+      	$life_insurance->insurance_type_id = Session::get('insurance_type');
+		$life_insurance->insurance_type = $request->input('insurance_type');
+		$life_insurance->previous_year = $request->input('previous_year');
+		$life_insurance->remarks = $request->input('remarks');
+		$life_insurance->status = '1';
+		$image = $previous_documents = $other_documents = '';
+		if ($request->file('previous_document')) {
+			$image = $request->file('previous_document');
+			$previous_documents	= 'Previous_document'. time() . '_' . $image->getClientOriginalName();
+			$image_resize = Image::make($image->getRealPath());              
+			$image_resize->save(storage_path('app/public/lifepreviousdoc/'.$previous_documents));
+			$life_insurance->previous_document = $previous_documents;
+			
+		}
+		if ($request->file('other_document')) {
+			$image = $request->file('other_document');
+			$other_documents = 'Other_document'. time() . '_' . $image->getClientOriginalName();
+			$image_resize = Image::make($image->getRealPath());              
+			$image_resize->save(storage_path('app/public/lifeotherdoc/'.$other_documents));
+			$life_insurance->other_document = $other_documents;
+		}
+        $life_insurance->save();
+          if(Session::get('customer_id')){
             $customers = Customers::where("id", Session::get('customer_id'))->first();
         } 
         

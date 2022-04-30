@@ -65,8 +65,9 @@
                               <label>Remarks</label>
                               <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="">
                             </div>
-                        </div>
-                       <div class="card-footer">
+                       
+                    </div>
+                    <div class="card-footer">
                         <div class="row">
                             <div class="col-md-6 text-left">
                                 <a href="{{ route('selectinsurence') }}" class="btn btn-danger pull-right">Previous</a>

@@ -70,11 +70,11 @@ class CustomerController extends Controller
                     $get_policy_details = Healthinsurance::where("insurance_type_id", $value['id'])->first();
 
                     $return_policy[$key]['insurance_type'] = 'Health';
-                }elseif($value['insurance_type'] == '2')
+                }elseif['insurance_type'] == '2')
                 {
                     $get_policy_details = Motorinsurance::where("insurance_type_id", $value['id'])->first();
                     $return_policy[$key]['insurance_type'] = 'Motor';
-                }elseif($value['insurance_type'] == '3')
+                }elseif['insurance_type'] == '3')
                 {
                     $get_policy_details = Life_insurance::where("insurance_type_id", $value['id'])->first();
                     $return_policy[$key]['insurance_type'] = 'Life';
