@@ -14,7 +14,11 @@
                 @csrf
 
                   <div class="card">
-                    <div class="card-header">Step 4: Finish</div>
+				  
+					
+                    <h2 style="background-color:blue;color:white">
+	              Step 4: Finish
+                     </h2>
   
                     <div class="card-body">
   

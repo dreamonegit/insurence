@@ -14448,3 +14448,11 @@ dl {
   flex-grow: 1; }
 
 /*# sourceMappingURL=style.css.map */
+
+a:hover {
+  cursor:pointer !important;
+}
+
+.linkdec{
+  text-decoration:none;
+}

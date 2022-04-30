@@ -34,6 +34,7 @@
                                     <option value="">------Choose Option------</option>
                                     <option value="1" @if(isset($insurance))@if($insurance->insurance_type==1) {{ "selected" }} @endif @endif >Health Insurance</option>
                                     <option value="2" @if(isset($insurance))@if($insurance->insurance_type==2) {{ "selected" }} @endif @endif >Motor Insurance</option>
+									<option value="3" @if(isset($insurance))@if($insurance->insurance_type==3) {{ "selected" }} @endif @endif >Life Insurance</option>
                                   </select>
                             </div>
                        

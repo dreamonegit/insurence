@@ -38,11 +38,11 @@
                             <th> Name </th>
                             <th> Mobile </th>
                             <th> E-mail </th>
-							<th> Country </th>
-                            <th> State </th>
+<!-- 							<th> Country </th>
+ -->                            <th> State </th>
 							 <th> City </th>
-							<th> Address </th>
-                            <th> Status </th>
+<!-- 							<th> Address </th>
+ -->                            <th> Status </th>
 							<th> Action </th>
                           </tr>
                         </thead>
@@ -64,11 +64,11 @@
 									{{ $customersval->email }}
 								  </td>
                                  
-								  <td>
+								 <!--  <td>
 									@if($customersval->country==1)
 									<label> India </label>
 								     @endif
-								  </td>
+								  </td> -->
 
 								  <td>
 									{{ $customersval->state }}
@@ -76,9 +76,9 @@
 								  <td>
 									{{ $customersval->city }}
 								  </td>
-								  <td>
+								 <!--  <td>
 									{{ $customersval->address }}
-								  </td>
+								  </td> -->
                                   <td>
 									@if($customersval->status==1)
 										<label class="badge badge-success">Active</label>
@@ -89,9 +89,9 @@
 								  <td>
 									<!-- <a href="{{ url('/admin/edit-customerdetails/'.$customersval->id) }}"><label class="badge badge-info">View</label></a> -->
 
-									<a href="{{ url('/customer/view-customer/'.$customersval->id) }}"><label class="badge badge-info">View</label></a>
+									<a  class="badge badge-info linkdec" href="{{ url('/customer/view-customer/'.$customersval->id) }}">View</a>
 
-									<a href="{{ url('/admin/delete-customerdetails/'.$customersval->id) }}"><label class="badge badge-danger">Delete</label></a>
+									<a class="badge badge-danger linkdec" href="{{ url('/admin/delete-customerdetails/'.$customersval->id) }}">Delete</a>
 									</td>
 							  </tr>
 							@endforeach

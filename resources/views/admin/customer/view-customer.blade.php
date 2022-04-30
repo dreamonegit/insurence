@@ -120,7 +120,7 @@
 							        <td>{{ $insurance_details['insurance_type'] }}</td>
 							        <td>{{ $insurance_details['previous_year'] }}</td>
 							        <td>{{ $insurance_details['remarks'] }}</td>
-							        <td></td>
+							        <td><a href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}"><label class="badge badge-info">Edit</label></a></td>
 							      </tr>
 							      @endforeach
 							     

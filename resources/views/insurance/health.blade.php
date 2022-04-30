@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/insurance/save-health-insurance') }}" method="POST">
+            <form id="health_insurance" action="{{ url('/insurance/save-health-insurance') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                   <div class="card">
@@ -40,6 +40,14 @@
                               <label>Previous year policy number</label>
                               <input type="text" class="form-control form-control-lg" name="previous_year" placeholder="Enter previous year policy number" aria-label="previous_year" value="">
                             </div>
+							<div class="form-group">
+						     <label>Previous Insurence Document</label>
+						     <input type="file" class="form-control form-control-lg" name="previous_document">
+						    </div>
+							<div class="form-group">
+						     <label>Other Document</label>
+						     <input type="file" class="form-control form-control-lg" name="other_document">
+						    </div>
                             <div class="form-group">
                               <label>Remarks</label>
                               <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="">
@@ -66,3 +74,26 @@
 @include('layouts.elements.admin.footer')
 @include('layouts.elements.admin.plugins')
 
+
+<script>
+         $('#health_insurance').validate({ 
+            ignore: ".ignore",
+            rules: {
+                insurance_type: {
+                    required: true
+                },
+                previous_year: {
+                  required: true,
+                },
+                remarks: {
+                    required: true
+                },
+            },
+            messages: {
+                insurance_type: "Policy Type is required",
+                previous_year: "Previous year policy number is required",
+                remarks: "Remark is required",
+                
+            }
+        });
+    </script>

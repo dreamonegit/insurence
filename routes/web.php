@@ -51,13 +51,17 @@ Route::group(['prefix' => 'insurance',  'middleware' => ['auth','admin']], funct
 
 	Route::get('/health-insurance', [App\Http\Controllers\InsuranceController::class, 'healthinsurance'])->name('healthinsurance');
 	Route::get('/motor-insurance', [App\Http\Controllers\InsuranceController::class, 'motorinsurance'])->name('motorinsurance');
-
+    Route::get('/life-insurance', [App\Http\Controllers\InsuranceController::class, 'lifeinsurance'])->name('lifeinsurance');
 
 	Route::post('/save-health-insurance', [App\Http\Controllers\InsuranceController::class, 'savehealthinsurance']);
 	Route::post('/save-motor-insurance', [App\Http\Controllers\InsuranceController::class, 'savemotorinsurance']);
+	Route::post('/save-life-insurance', [App\Http\Controllers\InsuranceController::class, 'savelifeinsurance']);
 
 
 	Route::get('/insurance-complete', [App\Http\Controllers\InsuranceController::class, 'insurance_complete'])->name('insurance_complete');
+
+
+	Route::get('/edit-insurance/{id}', [App\Http\Controllers\InsuranceController::class, 'editinsurance'])->name('editinsurance');
 });
 
 
