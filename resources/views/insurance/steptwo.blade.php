@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/insurance/save-insurance-type') }}" method="POST">
+            <form id="step_two" action="{{ url('/insurance/save-insurance-type') }}" method="POST">
                 @csrf
 
                   <div class="card">
@@ -58,3 +58,16 @@
 @include('layouts.elements.admin.footer')
 @include('layouts.elements.admin.plugins')
 
+<script>
+         $('#step_two').validate({ 
+            ignore: ".ignore",
+            rules: {
+                insurance_type: {
+                    required: true
+                },        
+            },
+             messages: {
+                insurance_type: "Insurance Type is required",
+            }
+        });
+    </script>

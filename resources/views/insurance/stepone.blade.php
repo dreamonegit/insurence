@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/insurance/save-customerdetails') }}" method="POST">
+            <form id="customerdetails-form" action="{{ url('/insurance/save-customerdetails') }}" method="POST">
                 @csrf
   
                 <div class="card">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group col-md-6">
                               <label>Mobile</label>
-                              <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
+                              <input type="number" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
                             </div>
                         </div>
 
@@ -104,3 +104,44 @@
 @include('layouts.elements.admin.footer')
 @include('layouts.elements.admin.plugins')
 
+<script>
+         $('#customerdetails-form').validate({ // initialize the plugin
+            ignore: ".ignore",
+            rules: {
+                first_name: {
+                    required: true
+                },
+                email: {
+                  required: true,
+                  email: true
+                },
+                mobile: {
+                    required: true,
+                    
+                },
+                address: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                status: {
+                    required: true
+                },
+                state: {
+                    required: true
+                },
+                country: {
+                    required: true
+                },
+            },
+            messages: {
+                first_name: "First Name is required",
+                email: "Email is required",
+                address: "Address is required",
+                mobile: "Mobile Number required",
+                city: "City is required",
+                
+            }
+        });
+    </script>

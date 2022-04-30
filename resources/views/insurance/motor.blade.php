@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/insurance/save-motor-insurance') }}" method="POST">
+            <form id="health_form" action="{{ url('/insurance/save-motor-insurance') }}" method="POST">
                 @csrf
 
                   <div class="card">
@@ -79,3 +79,29 @@
 @include('layouts.elements.admin.footer')
 @include('layouts.elements.admin.plugins')
 
+<script>
+         $('#health_form').validate({ 
+            ignore: ".ignore",
+            rules: {
+                insurance_type: {
+                    required: true
+                },
+                vehicle_type: {
+                  required: true,
+                },
+                previous_year: {
+                    required: true
+                },
+                remarks: {
+                    required: true
+                },
+            },
+            messages: {
+                insurance_type: "Policy Type is required",
+                vehicle_type: "Vehicle Type is required",
+                previous_year: "Previous year policy number is required",
+                remarks: "Remark is required",
+                
+            }
+        });
+    </script>
