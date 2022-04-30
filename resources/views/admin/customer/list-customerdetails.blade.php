@@ -17,9 +17,9 @@
               </nav>
             </div>
             <div class="row">
-				<div style="width:10%;margin-left: 84%;">
+				<!-- <div style="width:10%;margin-left: 84%;">
 					<a href="{{ url('admin/add-customerdetails') }}" class="p-3 btn btn-outline-success btn-fw">Add customer</a>
-				</div>
+				</div> -->
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
@@ -43,17 +43,16 @@
 							 <th> City </th>
 							<th> Address </th>
                             <th> Status </th>
-							<th> Edit </th>
-							<th> Delete </th>
+							<th> Action </th>
                           </tr>
                         </thead>
                         <tbody>
 			
-							
 							@foreach($customers as $customersval)
+							  
 							  <tr>
 								  <td>
-									{{ $customersval->id }}
+									{{ $loop->iteration  }}
 								  </td>
 								  <td>
 									{{ $customersval->first_name }}
@@ -88,9 +87,10 @@
 									@endif
 								  </td>
 								  <td>
-									<a href="{{ url('/admin/edit-customerdetails/'.$customersval->id) }}"><label class="badge badge-info">Edit</label></a>
-								  </td>
-		                            <td>
+									<!-- <a href="{{ url('/admin/edit-customerdetails/'.$customersval->id) }}"><label class="badge badge-info">View</label></a> -->
+
+									<a href="{{ url('/customer/view-customer/'.$customersval->id) }}"><label class="badge badge-info">View</label></a>
+
 									<a href="{{ url('/admin/delete-customerdetails/'.$customersval->id) }}"><label class="badge badge-danger">Delete</label></a>
 									</td>
 							  </tr>

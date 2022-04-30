@@ -59,3 +59,11 @@ Route::group(['prefix' => 'insurance',  'middleware' => ['auth','admin']], funct
 
 	Route::get('/insurance-complete', [App\Http\Controllers\InsuranceController::class, 'insurance_complete'])->name('insurance_complete');
 });
+
+
+
+Route::group(['prefix' => 'customer',  'middleware' => ['auth','admin']], function(){
+
+	Route::get('/view-customer/{id}', [App\Http\Controllers\CustomerController::class, 'viewcustomer'])->name('viewcustomer');
+	
+});

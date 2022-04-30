@@ -90,7 +90,7 @@ class AdminController extends Controller
 		return redirect('/admin/list-staff')->withErrors(['sucessfully staff Deleted']);
 	}
 	public function listcustomerdetails(){
-	$this->data["customers"] = $this->customers->get();
+	$this->data["customers"] = Customers::where('status','1')->get();
 	return view('admin.customer.list-customerdetails',$this->data);
 	}
 	public function addcustomerdetails(){

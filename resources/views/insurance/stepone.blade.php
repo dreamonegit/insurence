@@ -28,47 +28,58 @@
                                 </div>
                             @endif
   
-                            <div class="form-group">
-                          <label>First Name</label>
-                          <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the First name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                              <label>First Name</label>
+                              <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the First name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label>Last Name</label>
+                              <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                            </div>
                         </div>
-                        <div class="form-group">
-                          <label>Last Name</label>
-                          <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                              <label>E-mail</label>
+                              <input type="email" class="form-control form-control-lg" placeholder="Enter the E-mail" name="email" aria-label="E-mail" value="@if(isset($customers)){{ $customers->email }} @endif">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label>Mobile</label>
+                              <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
+                            </div>
                         </div>
-                        <div class="form-group">
-                          <label>E-mail</label>
-                          <input type="email" class="form-control form-control-lg" placeholder="Enter the E-mail" name="email" aria-label="E-mail" value="@if(isset($customers)){{ $customers->email }} @endif">
+
+                        <div class="row">
+    						 <div class="form-group col-md-6">
+        						<label>Country</label>
+        			           <select class="form-control form-control-lg" id="countries" name="country">
+        				        <option value="">---Choose the Country ---</option>
+        						  <option value="1" @if(isset($customers))@if($customers->country==1) {{ "selected" }} @endif @endif>India</option>
+        						  </select>
+    						</div>
+    	                     <div class="form-group col-md-6">
+        						  <label>State</label>
+        						  <select class="form-control form-control-lg" id="state" name="state">
+        						  <option value="">---choose the State ---</option>
+        						    @foreach($state as $statesvalue)
+        						   <option value="{{ $statesvalue->StateID}}" @if(isset($customers))@if($customers->state==$statesvalue->StateID) {{ "selected" }} @endif @endif>{{ $statesvalue->StateName }} </option>
+        						   @endforeach
+        						  </select>
+        						</div>
                         </div>
-                        <div class="form-group">
-                          <label>Mobile</label>
-                          <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
+                        
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                              <label>City</label>
+                              <input type="text" class="form-control form-control-lg" name="city" placeholder="Enter the City" aria-label="City" value="@if(isset($customers)){{ $customers->city }} @endif">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label>Address</label>
+                              <input type="text" class="form-control form-control-lg" name="address" placeholder="Enter the Address" aria-label="Address" value="@if(isset($customers)){{ $customers->address }} @endif">
+                            </div>
                         </div>
-						 <div class="form-group">
-						<label>Country</label>
-			           <select class="form-control form-control-lg" id="countries" name="country">
-				        <option value="">---Choose the Country ---</option>
-						  <option value="1" @if(isset($customers))@if($customers->country==1) {{ "selected" }} @endif @endif>India</option>
-						  </select>
-						</div>
-	                     <div class="form-group">
-						  <label>State</label>
-						  <select class="form-control form-control-lg" id="state" name="state">
-						  <option value="">---choose the State ---</option>
-						    @foreach($state as $statesvalue)
-						   <option value="{{ $statesvalue->id}}" @if(isset($customers))@if($customers->state==$statesvalue->id) {{ "selected" }} @endif @endif>{{ $statesvalue->StateName }} </option>
-						   @endforeach
-						  </select>
-						</div>
-                        <div class="form-group">
-                          <label>City</label>
-                          <input type="text" class="form-control form-control-lg" name="city" placeholder="Enter the City" aria-label="City" value="@if(isset($customers)){{ $customers->city }} @endif">
-                        </div>
-                        <div class="form-group">
-                          <label>Address</label>
-                          <input type="text" class="form-control form-control-lg" name="address" placeholder="Enter the Address" aria-label="Address" value="@if(isset($customers)){{ $customers->address }} @endif">
-                        </div>
-                        <div class="form-group">
+                  <!--       <div class="form-group">
                           <label for="exampleFormControlSelect1">Status</label>
                           <select class="form-control form-control-lg" id="status" name="status">
                             <option value="">------Choose Option------</option>
@@ -76,7 +87,7 @@
                             <option value="0"  @if(isset($customers))@if($customers->status==0) {{ "selected" }} @endif @endif>In-Active</option>
                           </select>
                         </div>
-                      
+                       -->
                           
                     </div>
   
