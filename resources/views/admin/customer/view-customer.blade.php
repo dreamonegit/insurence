@@ -95,6 +95,9 @@
               </div>
             </div>
 
+            <div class="page-header">
+                <h3 class="page-title">View Insurance details</h3>
+            </div>
 
             <div class="row">
               	<div class="col-md-12 grid-margin stretch-card">
@@ -111,18 +114,15 @@
 							      </tr>
 							    </thead>
 							    <tbody>
+
+							    	@foreach($get_insurance_details as $insurance_details)
 							      <tr>
-							        <td>John</td>
-							        <td>Doe</td>
-							        <td>john@example.com</td>
-							        <td>john@example.com</td>
+							        <td>{{ $insurance_details['insurance_type'] }}</td>
+							        <td>{{ $insurance_details['previous_year'] }}</td>
+							        <td>{{ $insurance_details['remarks'] }}</td>
+							        <td></td>
 							      </tr>
-							      <tr>
-							        <td>Mary</td>
-							        <td>Moe</td>
-							        <td>mary@example.com</td>
-							        <td>john@example.com</td>
-							      </tr>
+							      @endforeach
 							     
 							    </tbody>
 							  </table>

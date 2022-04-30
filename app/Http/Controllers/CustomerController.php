@@ -54,9 +54,38 @@ class CustomerController extends Controller
     public function viewcustomer($id)
     {
             $this->data["customers"] = Customers::where("id", $id)->first();
-            $this->data["get_insurance"] = Customers::where("id", $id)->first();
+            $get_insurance = Insurance::where('customer_id', $id)->get();
 
             $this->data["state"] = $this->state->get();
+
+
+            $return_policy = array();
+
+            foreach($get_insurance as $key => $value)
+            {
+                
+
+                if($value['insurance_type'] == '1')
+                {
+                    $get_policy_details = Healthinsurance::where("insurance_type_id", $value['id'])->first();
+
+                    $return_policy[$key]['insurance_type'] = 'Health';
+                }
+                else
+                {
+                    $get_policy_details = Motorinsurance::where("insurance_type_id", $value['id'])->first();
+                    $return_policy[$key]['insurance_type'] = 'Motor';
+                }
+
+                $return_policy[$key]['previous_year'] = $get_policy_details->previous_year;
+                $return_policy[$key]['remarks'] = $get_policy_details->remarks;
+
+                $return_policy[$key]['insurance_id'] = $value['id'];
+            }
+
+            $this->data["get_insurance_details"] = $return_policy;
+
+
             return view('admin.customer.view-customer',$this->data);
     }
 
