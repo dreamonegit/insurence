@@ -128,8 +128,15 @@ class InsuranceController extends Controller
 
 	public function healthinsurance(Request $request)
     {
-    	//save here
-    	return view('insurance.health');
+    	if(empty(Session::get('insurance_type'))){
+    		return view('insurance.health');
+        } else {
+            $this->data["healthinsurance"] = Healthinsurance::where("id", Session::get('insurance_type'))->first();
+
+        	return view('insurance.health',$this->data);
+        }		
+
+    	
     }
 
     public function motorinsurance(Request $request)
