@@ -9,6 +9,7 @@ use DB;
 use App\Models\User;
 use App\Models\Customers;
 use App\Models\State;
+use App\Models\Insurance;
 use Session;
 use Redirect;
 use Auth, Validator, Response;
@@ -24,6 +25,7 @@ class AdminController extends Controller
         $this->middleware('auth');
 		$this->customers = new Customers();
 		$this->state = new State();
+		$this->insurance = new Insurance();
     }
 
     /**
@@ -33,7 +35,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+		$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->count();
+		$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
+		$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->count();
+        return view('admin.index',$this->data);
     }
 	public function liststaff(){
 		$this->data['user'] = User::where('role',2)->get();
@@ -124,5 +129,35 @@ class AdminController extends Controller
 	public function deletecustomerdetails($id){
 		$customers = Customers::where('id',$id)->delete();
 		return redirect('/admin/list-customerdetails')->withErrors(['sucessfully customer details Deleted']);
+	}
+	
+	public function myprofile(Request $request){
+		if ($request->isMethod('post')){
+			$user = User::where('id',auth::user()->id)->first();
+			$user->name = $request->input('name'); 
+			$user->email = $request->input('email'); 
+			$user->mobile = $request->input('mobile'); 
+			$user->status = $request->input('status');
+			$image = $profile_images = '';   
+		   if ($request->file('profile_image')) {
+				$image = $request->file('profile_image');
+				$profile_images = 'Profile_image' . time() . '_' . $image->getClientOriginalName();
+				$image_resize = Image::make($image->getRealPath());              
+				$image_resize->save(storage_path('app/public/profileimage/' .$profile_images));
+				 $user->profile_image = $profile_images;
+				//echo $profile_images; exit;
+			}
+			$user->save();
+			return redirect()->back()->with('message', 'Successfully profile is update...'); 			
+		}else{
+			$this->data['title'] = 'My Profile';
+			return view('admin.mypofile', $this->data);			
+		} 		
+	}
+	 public function logout(){
+		
+		Session::flush();
+		
+		return redirect('/');	
 	}
 }

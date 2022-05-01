@@ -130,6 +130,30 @@ class AdminController extends Controller
 		$customers = Customers::where('id',$id)->delete();
 		return redirect('/admin/list-customerdetails')->withErrors(['sucessfully customer details Deleted']);
 	}
+	
+	public function myprofile(Request $request){
+		if ($request->isMethod('post')){
+			$user = User::where('id',auth::user()->id)->first();
+			$user->name = $request->input('name'); 
+			$user->email = $request->input('email'); 
+			$user->mobile = $request->input('mobile'); 
+			$user->status = $request->input('status');
+			$image = $profile_images = '';   
+		   if ($request->file('profile_image')) {
+				$image = $request->file('profile_image');
+				$profile_images = 'Profile_image' . time() . '_' . $image->getClientOriginalName();
+				$image_resize = Image::make($image->getRealPath());              
+				$image_resize->save(storage_path('app/public/profile/' .$profile_images));
+				 $user->profile_image = $profile_images;
+				//echo $profile_images; exit;
+			}
+			$user->save();
+			return redirect()->back()->with('message', 'Successfully profile is update...'); 			
+		}else{
+			$this->data['title'] = 'My Profile';
+			return view('admin.mypofile', $this->data);			
+		} 		
+	}
 	 public function logout(){
 		
 		Session::flush();
