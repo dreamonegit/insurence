@@ -130,4 +130,10 @@ class AdminController extends Controller
 		$customers = Customers::where('id',$id)->delete();
 		return redirect('/admin/list-customerdetails')->withErrors(['sucessfully customer details Deleted']);
 	}
+	 public function logout(){
+		
+		Session::flush();
+		
+		return redirect('/');	
+	}
 }
