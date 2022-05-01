@@ -68,7 +68,7 @@
 							  <select class="form-control form-control-lg" id="state" name="state">
 							  <option value="">---choose the State ---</option>
 							    @foreach($state as $statesvalue)
-							   <option value="{{ $statesvalue->id}}" @if(isset($customers))@if($customers->state==$statesvalue->id) {{ "selected" }} @endif @endif>{{ $statesvalue->StateName }} </option>
+							   <option value="{{ $statesvalue->id}}" @if(isset($customers))@if($customers->state==$statesvalue->StateID) {{ "selected" }} @endif @endif>{{ $statesvalue->StateName }} </option>
 							   @endforeach
 							  </select>
 							</div>
