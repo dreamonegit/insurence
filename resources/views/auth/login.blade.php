@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-top: 7%!important;">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="background-image:url('{{ asset('assets/images/dashboard/pexels-olya-kobruseva-7163953_4.jpg')}}');">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

@@ -9,6 +9,7 @@ use DB;
 use App\Models\User;
 use App\Models\Customers;
 use App\Models\State;
+use App\Models\Insurance;
 use Session;
 use Redirect;
 use Auth, Validator, Response;
@@ -24,6 +25,7 @@ class AdminController extends Controller
         $this->middleware('auth');
 		$this->customers = new Customers();
 		$this->state = new State();
+		$this->insurance = new Insurance();
     }
 
     /**
@@ -33,7 +35,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+		$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->count();
+		$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
+		$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->count();
+        return view('admin.index',$this->data);
     }
 	public function liststaff(){
 		$this->data['user'] = User::where('role',2)->get();
