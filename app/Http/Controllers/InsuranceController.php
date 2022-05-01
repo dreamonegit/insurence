@@ -58,7 +58,8 @@ class InsuranceController extends Controller
         	$customers = new Customers();
         } else {
             $customers = Customers::where("id", Session::get('customer_id'))->first();
-        }		
+        }
+		$customers->staff_id = Auth::user()->id;		
         $customers->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');
 		$customers->mobile = $request->input('mobile');
