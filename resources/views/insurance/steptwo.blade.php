@@ -42,10 +42,10 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-6 text-left">
-                                <a href="{{ route('addinsurence') }}" class="btn btn-danger pull-right">Previous</a>
+                                <a href="{{ route('addinsurence') }}" class="btn btn-danger pull-right ">Previous</a>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button type="submit" class="btn btn-primary">Next</button>
+                                <button type="submit" class="btn btn-primary step-button button-right">Next</button>
                             </div>
                         </div>
                     </div>

@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-						  <button type="submit" class="btn btn-outline-primary btn-fw" style="width:10%;margin-left: 84%;">Save</button>
+						  <button type="submit" class="btn btn-primary button-right step-button" >Update</button>
 						</div>
 					</form>
                   </div>
@@ -120,7 +120,7 @@
 							        <td>{{ $insurance_details['insurance_type'] }}</td>
 							        <td>{{ $insurance_details['previous_year'] }}</td>
 							        <td>{{ $insurance_details['remarks'] }}</td>
-							        <td><a href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}"><label class="badge badge-info">Edit</label></a></td>
+							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}">Edit</a></td>
 							      </tr>
 							      @endforeach
 							     

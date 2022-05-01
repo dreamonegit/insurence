@@ -92,7 +92,7 @@
                     </div>
   
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-primary">Next</button>
+                        <button type="submit" class="btn btn-primary button-right step-button">Next</button>
                     </div>
                 </div>
             </form>

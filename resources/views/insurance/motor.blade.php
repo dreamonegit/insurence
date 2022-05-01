@@ -73,7 +73,7 @@
                                 <a href="{{ route('selectinsurence') }}" class="btn btn-danger pull-right">Previous</a>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button type="submit" class="btn btn-primary">Finish</button>
+                                <button type="submit" class="btn btn-primary step-button button-right">Finish</button>
                             </div>
                         </div>
                     </div>
