@@ -11,7 +11,7 @@ use App\Models\Customers;
 use App\Models\Insurance;
 use App\Models\Motorinsurance;
 use App\Models\Healthinsurance;
-use App\Models\Life_insurance;
+use App\Models\Life_Insurance;
 use App\Models\State;
 use Session;
 use Redirect;
@@ -141,13 +141,25 @@ class InsuranceController extends Controller
 
     public function motorinsurance(Request $request)
     {
-    	//save here
-    	return view('insurance.motor');
+    	if(empty(Session::get('insurance_type'))){
+    		return view('insurance.motor');
+        } else {
+            $this->data["motorinsurance"] = Motorinsurance::where("insurance_type_id", Session::get('insurance_type'))->first();
+
+        	return view('insurance.motor',$this->data);
+        }		
+
     }
     public function lifeinsurance(Request $request)
     {
-    	//save here
-    	return view('insurance.life');
+
+    	if(empty(Session::get('insurance_type'))){
+    		    	return view('insurance.life');
+        } else {
+            $this->data["lifeinsurance"] = Life_Insurance::where("insurance_type_id", Session::get('insurance_type'))->first();
+
+        	return view('insurance.life',$this->data);
+        }		
     }
 
 
@@ -195,7 +207,7 @@ class InsuranceController extends Controller
         
         $motorinsurance = new Motorinsurance();   
         $motorinsurance->insurance_type_id = Session::get('insurance_type');   
-      	$motorinsurance->insurance_type = Session::get('insurance_type');
+      	$motorinsurance->insurance_type = $request->input('insurance_type');
 		$motorinsurance->vehicle_type = $request->input('vehicle_type');
 		$motorinsurance->previous_year = $request->input('previous_year');
 		$motorinsurance->remarks = $request->input('remarks');

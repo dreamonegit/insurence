@@ -32,13 +32,13 @@
                                 <label for="exampleFormControlSelect1">Policy Type</label>
                                   <select class="form-control form-control-lg" id="insurance_type" name="insurance_type">
                                     <option value="">------Choose Option------</option>
-                                    <option value="1">Individual</option>
-                                    <option value="2">Floater Policy</option>
+                                    <option value="1" @if(isset($lifeinsurance))@if($lifeinsurance->insurance_type==1) {{ "selected" }} @endif @endif>Individual</option>
+                                    <option value="2" @if(isset($lifeinsurance))@if($lifeinsurance->insurance_type==1) {{ "selected" }} @endif @endif>Floater Policy</option>
                                   </select>
                             </div>
                             <div class="form-group">
                               <label>Previous year policy number</label>
-                              <input type="text" class="form-control form-control-lg" name="previous_year" placeholder="Enter previous year policy number" aria-label="previous_year" value="">
+                              <input type="text" class="form-control form-control-lg" name="previous_year" placeholder="Enter previous year policy number" aria-label="previous_year" value="@if(isset($lifeinsurance)){{ $lifeinsurance->previous_year }} @endif">
                             </div>
 							<div class="form-group">
 						     <label>Previous Insurence Document</label>
@@ -50,7 +50,7 @@
 						    </div>
                             <div class="form-group">
                               <label>Remarks</label>
-                              <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="">
+                              <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="@if(isset($lifeinsurance)){{ $lifeinsurance->remarks }} @endif">
                             </div>
                        
                     </div>

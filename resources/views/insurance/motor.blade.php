@@ -33,26 +33,26 @@
                                 <label for="exampleFormControlSelect1">Policy Type</label>
                                   <select class="form-control form-control-lg" id="insurance_type" name="insurance_type">
                                     <option value="">------Choose Option------</option>
-                                    <option value="1">Comprehensive</option>
-                                    <option value="2">TP only</option>
+                                    <option value="1" @if(isset($motorinsurance))@if($motorinsurance->insurance_type==1) {{ "selected" }} @endif @endif>Comprehensive</option>
+                                    <option value="2" @if(isset($motorinsurance))@if($motorinsurance->insurance_type==2) {{ "selected" }} @endif @endif>TP only</option>
                                   </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Vehicle Type</label>
+                                <label for="exampleFormControlSelect1">Vehicle Type </label>
                                   <select class="form-control form-control-lg" id="vehicle_type" name="vehicle_type">
                                     <option value="">------Choose Option------</option>
-                                    <option value="1">Car</option>
-                                    <option value="2">Commercial Vehicle</option>
-                                    <option value="3">Three Wheeler</option>
-                                    <option value="4">School Bus</option>
-                                    <option value="5">PVC</option>
-                                    <option value="6">Tractor</option>
-                                    <option value="7">Two Wheeler</option>
+                                    <option value="1"  @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==1) {{ "selected" }} @endif @endif>Car</option>
+                                    <option value="2" @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==2) {{ "selected" }} @endif @endif>Commercial Vehicle</option>
+                                    <option value="3" @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==3) {{ "selected" }} @endif @endif>Three Wheeler</option>
+                                    <option value="4" @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==4) {{ "selected" }} @endif @endif>School Bus</option>
+                                    <option value="5" @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==5) {{ "selected" }} @endif @endif>PVC</option>
+                                    <option value="6" @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==6) {{ "selected" }} @endif @endif>Tractor</option>
+                                    <option value="7" @if(isset($motorinsurance))@if($motorinsurance->vehicle_type==7) {{ "selected" }} @endif @endif>Two Wheeler</option>
                                   </select>
                             </div>
                             <div class="form-group">
                               <label>Previous year policy number</label>
-                              <input type="text" class="form-control form-control-lg" name="previous_year" placeholder="Enter previous year policy number" aria-label="previous_year" value="">
+                              <input type="text" class="form-control form-control-lg" name="previous_year" placeholder="Enter previous year policy number" aria-label="previous_year" value="@if(isset($motorinsurance)){{ $motorinsurance->previous_year }} @endif">
                             </div>
 							<div class="form-group">
 						     <label>Previous Insurence Document</label>
@@ -64,7 +64,7 @@
 						    </div>
                             <div class="form-group">
                               <label>Remarks</label>
-                              <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="">
+                              <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="@if(isset($motorinsurance)){{ $motorinsurance->remarks }} @endif">
                             </div>
                         </div>
                        <div class="card-footer">

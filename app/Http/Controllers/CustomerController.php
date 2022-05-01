@@ -11,7 +11,7 @@ use App\Models\Customers;
 use App\Models\Insurance;
 use App\Models\Motorinsurance;
 use App\Models\Healthinsurance;
-use App\Models\Life_insurance;
+use App\Models\Life_Insurance;
 use App\Models\State;
 use Session;
 use Redirect;
