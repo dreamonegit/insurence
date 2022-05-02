@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Customers;
 use App\Models\State;
 use App\Models\Insurance;
+use Carbon\Carbon;
 use Session;
 use Redirect;
 use Auth, Validator, Response;
@@ -35,9 +36,14 @@ class AdminController extends Controller
      */
     public function index()
     {
+		
 		$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->count();
 		$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
 		$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->count();
+		$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+		$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
+		$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->count();
+		
         return view('admin.index',$this->data);
     }
 	public function liststaff(){
@@ -95,12 +101,16 @@ class AdminController extends Controller
 		return redirect('/admin/list-staff')->withErrors(['sucessfully staff Deleted']);
 	}
 	public function listcustomerdetails(){
-	$this->data["customers"] = Customers::where('status','1')->get();
+		if(Auth::user()->role!=1){
+			$this->data["customers"] = Customers::where('status','1')->where('staff_id',Auth::user()->id)->get();
+		}else{
+			$this->data["customers"] = Customers::get();
+		}
 	return view('admin.customer.list-customerdetails',$this->data);
 	}
 	public function addcustomerdetails(){
-    $this->data["state"] = $this->state->get();	
-	return view('admin.customer.add-customerdetails',$this->data);
+		$this->data["state"] = $this->state->get();	
+		return view('admin.customer.add-customerdetails',$this->data);
 	}
 	public function savecustomerdetails(Request $request){
         if ($request->input("hid") != 0) {

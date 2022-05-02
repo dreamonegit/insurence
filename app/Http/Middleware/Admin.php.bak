@@ -23,6 +23,6 @@ class Admin
 			return $next($request);
         }
 		Auth::logout();
-		return redirect(route('login'))->withErrors(['email' => 'These credentials do not match our recordsss.']);
+		return redirect(route('login'))->withErrors(['email' => 'These credentials do not match our records.']);
     }
 }

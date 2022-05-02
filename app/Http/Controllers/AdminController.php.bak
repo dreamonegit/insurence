@@ -95,12 +95,16 @@ class AdminController extends Controller
 		return redirect('/admin/list-staff')->withErrors(['sucessfully staff Deleted']);
 	}
 	public function listcustomerdetails(){
-	$this->data["customers"] = Customers::where('status','1')->get();
+		if(Auth::user()->role!=1){
+			$this->data["customers"] = Customers::where('status','1')->where('staff_id',Auth::user()->id)->get();
+		}else{
+			$this->data["customers"] = Customers::where('status','1')->get();
+		}
 	return view('admin.customer.list-customerdetails',$this->data);
 	}
 	public function addcustomerdetails(){
-    $this->data["state"] = $this->state->get();	
-	return view('admin.customer.add-customerdetails',$this->data);
+		$this->data["state"] = $this->state->get();	
+		return view('admin.customer.add-customerdetails',$this->data);
 	}
 	public function savecustomerdetails(Request $request){
         if ($request->input("hid") != 0) {
@@ -143,7 +147,7 @@ class AdminController extends Controller
 				$image = $request->file('profile_image');
 				$profile_images = 'Profile_image' . time() . '_' . $image->getClientOriginalName();
 				$image_resize = Image::make($image->getRealPath());              
-				$image_resize->save(storage_path('app/public/profileimage/' .$profile_images));
+				$image_resize->save(storage_path('app/public/profile/' .$profile_images));
 				 $user->profile_image = $profile_images;
 				//echo $profile_images; exit;
 			}

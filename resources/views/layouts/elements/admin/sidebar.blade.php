@@ -20,12 +20,14 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+            @if(Auth::user()->role==1)
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/list-staff') }}">
                 <span class="menu-title">List Staff</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
+            @endif
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/list-customerdetails') }}">
                 <span class="menu-title">Customer details</span>

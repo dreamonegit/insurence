@@ -25,6 +25,24 @@
 	.error{
 		color:red;
 	}
+	.bg-gradient-green {
+		background: -webkit-gradient(linear, left top, right top, from(#ffbf96), to(#fe7096)) !important;
+		background: linear-gradient(to right, #66734a, #70fe7e) !important;
+	}
+	.bg-gradient-purple {
+		background: -webkit-gradient(linear, left top, right top, from(#ffbf96), to(#fe7096)) !important;
+		background: linear-gradient(to right, #66734a, #da04df) !important;
+	}
+	.bg-gradient-other {
+		background: -webkit-gradient(linear, left top, right top, from(#ffbf96), to(#fe7096)) !important;
+		background: linear-gradient(to right, #d98484, #54e91c) !important;
+	}
+	.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
+		margin-bottom: 0;
+		padding: 11px 13px;
+		cursor: pointer;
+		color: black;
+	}
 	</style>
   </head>
   <body>
