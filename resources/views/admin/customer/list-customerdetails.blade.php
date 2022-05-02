@@ -1,3 +1,4 @@
+<?php use App\Models\Customers; ?>
 @include('layouts.elements.admin.header') 
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
@@ -35,6 +36,7 @@
                         <thead>
                           <tr>
                             <th> ID </th>
+							<th>Staff name</th>
                             <th> Name </th>
                             <th> Mobile </th>
                             <th> E-mail </th>
@@ -54,6 +56,7 @@
 								  <td>
 									{{ $loop->iteration  }}
 								  </td>
+								  <td>{{ Customers::getstaffname($customersval->staff_id) }}</td>
 								  <td>
 									{{ $customersval->first_name }}
 								  </td>
