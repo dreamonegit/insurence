@@ -119,7 +119,7 @@
 							      <tr>
 							        <td>{{ $insurance_details['insurance_type'] }}</td>
 							        <td>@isset($insurance_details['previous_year']) {{ $insurance_details['previous_year'] }} @endif</td>
-							        <td>@isset($insurance_details['remarks']) {{ $insurance_details['remarks'] }} @endif</td>
+							        <td>{{ $insurance_details['remarks'] }}</td>
 							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}">Edit</a></td>
 							      </tr>
 							      @endforeach

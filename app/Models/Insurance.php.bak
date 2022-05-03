@@ -1,25 +1,22 @@
 <?php
 
 namespace App\Models;
-use App\Models\User;
-use Auth, Validator, Response;
+use Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Customers extends Authenticatable
+class Insurance extends Authenticatable
 {
     use Notifiable;
 	
-	protected $table="customers";
-
-	public static function getstaffname($staffid){
+	protected $table="insurance_type";
+	
+	public function countstaffcustomer(){
 		
-		$staff = User::where('id',$staffid)->first();
-		if($staff->name!=''){
-			return $staff->name;
-		}	
+		return $this->hasMany('App\Models\Customers', 'customer_id')->where('staff_id',Auth::user()->id);
 	}
+
 }

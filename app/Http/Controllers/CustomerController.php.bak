@@ -11,7 +11,7 @@ use App\Models\Customers;
 use App\Models\Insurance;
 use App\Models\Motorinsurance;
 use App\Models\Healthinsurance;
-use App\Models\Life_insurance;
+use App\Models\Life_Insurance;
 use App\Models\State;
 use Session;
 use Redirect;
@@ -70,17 +70,18 @@ class CustomerController extends Controller
                     $get_policy_details = Healthinsurance::where("insurance_type_id", $value['id'])->first();
 
                     $return_policy[$key]['insurance_type'] = 'Health';
-                }elseif['insurance_type'] == '2')
+                }elseif($value['insurance_type'] == '2')
                 {
                     $get_policy_details = Motorinsurance::where("insurance_type_id", $value['id'])->first();
                     $return_policy[$key]['insurance_type'] = 'Motor';
-                }elseif['insurance_type'] == '3')
+                }elseif($value['insurance_type'] == '3')
                 {
                     $get_policy_details = Life_insurance::where("insurance_type_id", $value['id'])->first();
                     $return_policy[$key]['insurance_type'] = 'Life';
                 }
-
-                $return_policy[$key]['previous_year'] = $get_policy_details->previous_year;
+				if(isset($get_policy_details->previous_year)){
+					$return_policy[$key]['previous_year'] = $get_policy_details->previous_year;
+				}
                 $return_policy[$key]['remarks'] = $get_policy_details->remarks;
 
                 $return_policy[$key]['insurance_id'] = $value['id'];

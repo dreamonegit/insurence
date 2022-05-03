@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\User;
+use Auth, Validator, Response;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,8 @@ class Customers extends Authenticatable
 	public static function getstaffname($staffid){
 		
 		$staff = User::where('id',$staffid)->first();
-		return $staff->name;
-		
+		if(isset($staff->name)){
+			return $staff->name;
+		}	
 	}
 }

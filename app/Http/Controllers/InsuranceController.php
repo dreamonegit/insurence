@@ -53,7 +53,6 @@ class InsuranceController extends Controller
     }
 
     public function savecustomerdetails(Request $request){
-	
         if(empty(Session::get('customer_id'))){
         	$customers = new Customers();
         } else {
@@ -103,7 +102,7 @@ class InsuranceController extends Controller
         } else {
             $Insurance = Insurance::where("id", Session::get('insurance_type'))->first();
         }		
-      
+		$Insurance->staff_id = Auth::user()->id;
       	$Insurance->customer_id = Session::get('customer_id');
 		$Insurance->insurance_type = $request->input('insurance_type');
 		$Insurance->status = '0';
