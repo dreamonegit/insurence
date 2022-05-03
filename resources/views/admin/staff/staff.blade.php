@@ -26,43 +26,51 @@
 				</div>
 			@endif
             <div class="row">
-              <div class="col-md-10 grid-margin stretch-card">
+              <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
 					<form id="staff-form" action="{{ url('/admin/save-staff') }}" method="POST" enctype="multipart/form-data">@csrf
 						@if(isset($user))
 							<input type="hidden" name="hid" value="{{ $user->id }}"> 
 						@endif
-						<div class="form-group">
-						  <label>Staff Name</label>
-						  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name" value="@if(isset($user)){{ $user->name }} @endif">
+						<div class="row">
+							<div class="form-group col-md-6">
+							  <label>Staff Name</label>
+							  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name" value="@if(isset($user)){{ $user->name }} @endif">
+							</div>
+							<div class="form-group col-md-6">
+							  <label>E-mail</label>
+							  <input type="email" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail" value="@if(isset($user)){{ $user->email }} @endif">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-6">
+							  <label>Mobile</label>
+							  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Mobile" aria-label="Mobile" value="@if(isset($user)){{ $user->mobile }} @endif">
+							</div>
+							<div class="form-group col-md-6">
+							  <label>Password</label>
+							  <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" value="@if(isset($user)){{ $user->plain }} @endif">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-6">
+							  <label>Profile Image</label>
+							  <input type="file" class="form-control form-control-lg" name="profile_image">
+							</div>
+							<div class="form-group col-md-6">
+							  <label for="exampleFormControlSelect1">Status</label>
+							  <select class="form-control form-control-lg" id="status" name="status">
+								<option value="">------Choose Option------</option>
+								<option value="1" @if(isset($user))@if($user->status==1) {{ "selected" }} @endif @endif>Active</option>
+								<option value="0"  @if(isset($user))@if($user->status==0) {{ "selected" }} @endif @endif>In-Active</option>
+							  </select>
+							</div>
 						</div>
 						<div class="form-group">
-						  <label>E-mail</label>
-						  <input type="email" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail" value="@if(isset($user)){{ $user->email }} @endif">
-						</div>
-						<div class="form-group">
-						  <label>Mobile</label>
-						  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Mobile" aria-label="Mobile" value="@if(isset($user)){{ $user->mobile }} @endif">
-						</div>
-						<div class="form-group">
-						  <label>Password</label>
-						  <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" value="@if(isset($user)){{ $user->plain }} @endif">
-						</div>
-						<div class="form-group">
-						  <label>Profile Image</label>
-						  <input type="file" class="form-control form-control-lg" name="profile_image">
-						</div>
-						<div class="form-group">
-						  <label for="exampleFormControlSelect1">Status</label>
-						  <select class="form-control form-control-lg" id="status" name="status">
-							<option value="">------Choose Option------</option>
-							<option value="1" @if(isset($user))@if($user->status==1) {{ "selected" }} @endif @endif>Active</option>
-							<option value="0"  @if(isset($user))@if($user->status==0) {{ "selected" }} @endif @endif>In-Active</option>
-						  </select>
-						</div>
-						<div class="form-group">
-						  <button type="submit" class="btn btn-outline-primary btn-fw" style="width:10%;margin-left: 84%;">Save</button>
+						  <button type="submit" class="btn btn-primary button-right step-button" >Save</button>
 						</div>
 					</form>
                   </div>
