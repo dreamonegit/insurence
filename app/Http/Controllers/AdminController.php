@@ -36,14 +36,22 @@ class AdminController extends Controller
      */
     public function index()
     {
-		
-		$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->count();
-		$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
-		$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->count();
-		$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
-		$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
-		$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->count();
-		
+		if(Auth::user()->role!=1){
+			$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->where('staff_id',Auth::user()->id)->count();
+			//echo "<pre>"; print_r($this->data['healthusercount']); exit;
+			$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->where('staff_id',Auth::user()->id)->count();
+			$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->where('staff_id',Auth::user()->id)->count();
+			$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('staff_id',Auth::user()->id)->count();
+			$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
+			$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
+		}else{
+			$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->with('countstaffcustomer')->count();
+			$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
+			$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->count();
+			$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+			$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
+			$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->count();
+		}
         return view('admin.index',$this->data);
     }
 	public function liststaff(){
