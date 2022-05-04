@@ -174,25 +174,21 @@ class InsuranceController extends Controller
 		$healthinsurance->status = '1';
 		$image = $previous_documents = $other_documents = '';
 		if ($request->file('previous_document')) {
-			$image = $request->file('previous_document');
-			$previous_documents	= 'Previous_document'. time() . '_' . $image->getClientOriginalName();
-			$image_resize = Image::make($image->getRealPath());              
-			$image_resize->save(storage_path('app/public/healthpreviousdoc/'.$previous_documents));
-			$healthinsurance->previous_document = $previous_documents;
-			
+			 $previous_document = $request->file('previous_document');
+			 $previous_document_name = time() . '.' . $previous_document->getClientOriginalExtension();
+			 $path = $request->file('previous_document')->storeAs('healthpreviousdoc/', $previous_document_name, 'public');
+			 $healthinsurance->previous_document = $previous_document_name;
 		}
 		if ($request->file('other_document')) {
-			$image = $request->file('other_document');
-			$other_documents = 'Other_document'. time() . '_' . $image->getClientOriginalName();
-			$image_resize = Image::make($image->getRealPath());              
-			$image_resize->save(storage_path('app/public/healthotherdoc/'.$other_documents));
-			$healthinsurance->other_document = $other_documents;
+			 $other_document = $request->file('other_document');
+			 $other_document_name = time() . '.' . $other_document->getClientOriginalExtension();
+			 $path = $request->file('other_document')->storeAs('healthotherdoc/', $other_document_name, 'public');
+			 $healthinsurance->other_document = $other_document_name;			
 		}
         $healthinsurance->save();
           if(Session::get('customer_id')){
             $customers = Customers::where("id", Session::get('customer_id'))->first();
         } 
-        
         $customers->status = '1';
         $customers->save();
 
@@ -213,19 +209,16 @@ class InsuranceController extends Controller
 		$motorinsurance->remarks = $request->input('remarks');
 		$image = $previous_documents = $other_documents = '';
 		if ($request->file('previous_document')) {
-			$image = $request->file('previous_document');
-			$previous_documents	= 'Previous_document'. time() . '_' . $image->getClientOriginalName();
-			$image_resize = Image::make($image->getRealPath());              
-			$image_resize->save(storage_path('app/public/motorpreviousdoc/'.$previous_documents));
-			$motorinsurance->previous_document = $previous_documents;
-			
+			 $previous_document = $request->file('previous_document');
+			 $previous_document_name = time() . '.' . $previous_document->getClientOriginalExtension();
+			 $path = $request->file('previous_document')->storeAs('motorpreviousdoc/', $previous_document_name, 'public');
+			 $motorinsurance->previous_document = $previous_document_name;
 		}
 		if ($request->file('other_document')) {
-			$image = $request->file('other_document');
-			$other_documents = 'Other_document'. time() . '_' . $image->getClientOriginalName();
-			$image_resize = Image::make($image->getRealPath());              
-			$image_resize->save(storage_path('app/public/motorotherdoc/'.$other_documents));
-			$motorinsurance->other_document = $other_documents;
+			 $other_document = $request->file('other_document');
+			 $other_document_name = time() . '.' . $other_document->getClientOriginalExtension();
+			 $path = $request->file('other_document')->storeAs('motorotherdoc/', $other_document_name, 'public');
+			 $motorinsurance->other_document = $other_document_name;			
 		}
         $motorinsurance->save();
 
@@ -252,21 +245,18 @@ class InsuranceController extends Controller
 		$life_insurance->status = '1';
 		$image = $previous_documents = $other_documents = '';
 		if ($request->file('previous_document')) {
-			$image = $request->file('previous_document');
-			$previous_documents	= 'Previous_document'. time() . '_' . $image->getClientOriginalName();
-			$image_resize = Image::make($image->getRealPath());              
-			$image_resize->save(storage_path('app/public/lifepreviousdoc/'.$previous_documents));
-			$life_insurance->previous_document = $previous_documents;
-			
+			 $previous_document = $request->file('previous_document');
+			 $previous_document_name = time() . '.' . $previous_document->getClientOriginalExtension();
+			 $path = $request->file('previous_document')->storeAs('lifepreviousdoc/', $previous_document_name, 'public');
+			 $life_insurance->previous_document = $previous_document_name;
 		}
 		if ($request->file('other_document')) {
-			$image = $request->file('other_document');
-			$other_documents = 'Other_document'. time() . '_' . $image->getClientOriginalName();
-			$image_resize = Image::make($image->getRealPath());              
-			$image_resize->save(storage_path('app/public/lifeotherdoc/'.$other_documents));
-			$life_insurance->other_document = $other_documents;
-		}
-        $life_insurance->save();
+			 $other_document = $request->file('other_document');
+			 $other_document_name = time() . '.' . $other_document->getClientOriginalExtension();
+			 $path = $request->file('other_document')->storeAs('lifeotherdoc/', $other_document_name, 'public');
+			 $life_insurance->other_document = $other_document_name;			
+		}		
+		$life_insurance->save();
           if(Session::get('customer_id')){
             $customers = Customers::where("id", Session::get('customer_id'))->first();
         } 
