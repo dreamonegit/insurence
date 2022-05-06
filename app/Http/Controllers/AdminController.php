@@ -110,9 +110,20 @@ class AdminController extends Controller
 	}
 	public function listcustomerdetails(){
 		if(Auth::user()->role!=1){
-			$this->data["customers"] = Customers::where('status','1')->where('staff_id',Auth::user()->id)->get();
+			$this->data["customers"] = Customers::select(
+                            "customers.*", 
+                            "state.StateName as state_name"
+                        )->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('staff_id',Auth::user()->id)->get();
 		}else{
-			$this->data["customers"] = Customers::get();
+			//$this->data["customers"] = Customers::get();
+
+			$this->data["customers"] = Customers::select(
+                            "customers.*", 
+                            "state.StateName as state_name"
+                        )
+                        ->leftJoin("state", "state.StateID", "=", "customers.state")
+                        ->get();
+
 		}
 	return view('admin.customer.list-customerdetails',$this->data);
 	}

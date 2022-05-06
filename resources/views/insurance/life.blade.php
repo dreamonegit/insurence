@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <form action="{{ url('/insurance/save-life-insurance') }}" method="POST" enctype="multipart/form-data">
+            <form id="life_insurance" action="{{ url('/insurance/save-life-insurance') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                   <div class="card">
@@ -60,7 +60,7 @@
                                 <a href="{{ route('selectinsurence') }}" class="btn btn-danger pull-right">Previous</a>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button type="submit" class="btn btn-primary">Finish</button>
+                                <button type="submit" class="btn btn-primary step-button button-right">Finish</button>
                             </div>
                         </div>
                     </div>
@@ -74,3 +74,16 @@
 @include('layouts.elements.admin.footer')
 @include('layouts.elements.admin.plugins')
 
+<script>
+         $('#life_insurance').validate({ 
+            ignore: ".ignore",
+            rules: {
+                insurance_type: {
+                    required: true
+                },        
+            },
+             messages: {
+                insurance_type: "Insurance Type is required",
+            }
+        });
+    </script>

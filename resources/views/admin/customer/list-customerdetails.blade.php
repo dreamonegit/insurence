@@ -74,7 +74,7 @@
 								  </td> -->
 
 								  <td>
-									{{ $customersval->state }}
+									{{ $customersval->state_name }}
 								  </td>
 								  <td>
 									{{ $customersval->city }}
