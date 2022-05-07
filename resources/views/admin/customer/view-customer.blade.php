@@ -111,6 +111,7 @@
 							        <th>Policy Number</th>
 							        <th>Remarks</th>
 							        <th>Actions</th>
+									<th>Upload Document</th>
 							      </tr>
 							    </thead>
 							    <tbody>
@@ -121,7 +122,70 @@
 							        <td>@isset($insurance_details['previous_year']) {{ $insurance_details['previous_year'] }} @endif</td>
 							        <td>@isset($insurance_details['remarks']) {{ $insurance_details['remarks'] }} @endif</td>
 							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}">Edit</a></td>
-							      </tr>
+									<td><a href="#" class="badge badge-info linkdec" data-bs-toggle="modal" data-bs-target="#smallModal{{ $insurance_details['insurance_id'] }}">View </a></td>
+								  </tr>
+								  <div class="modal fade" id="smallModal{{ $insurance_details['insurance_id'] }}" tabindex="-1" aria-hidden="true">
+										<div class="modal-dialog modal-sm" role="document">
+										  <div class="modal-content">
+											<div class="modal-header">
+											  <h5 class="modal-title" id="exampleModalLabel2">Uploaded Document</h5>
+											  <button
+												type="button"
+												class="btn-close"
+												data-bs-dismiss="modal"
+												aria-label="Close"
+											  ></button>
+											</div>
+											<div class="modal-body">
+											  
+												
+												@if($insurance_details['insurance_type']=='Motor')
+												<div class="row">
+													<div class="col mb-3">
+														@if($insurance_details['previous_document']!='')
+														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/motorotherdoc/'.$insurance_details['previous_document']) }}" target="_blank">{{ $insurance_details['previous_document'] }}</a></label>
+														@endif
+														@if($insurance_details['other_document']!='')
+														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/motorpreviousdoc/'.$insurance_details['other_document']) }}" target="_blank">{{ $insurance_details['other_document'] }}</a></label>
+													    @endif
+													</div>	
+												</div>												
+												 @endif
+												@if($insurance_details['insurance_type']=='Health')
+												<div class="row">
+													<div class="col mb-3">
+													@if($insurance_details['previous_document']!='')
+														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/healthotherdoc/'.$insurance_details['previous_document']) }}" target="_blank">{{ $insurance_details['previous_document'] }}</a></label>
+												    @endif
+													@if($insurance_details['other_document']!='')
+														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/healthpreviousdoc/'.$insurance_details['other_document']) }}" target="_blank">{{ $insurance_details['other_document'] }}</a></label>
+													@endif
+													</div>	
+												</div>												
+												 @endif
+
+												@if($insurance_details['insurance_type']=='Life')
+												<div class="row">
+													<div class="col mb-3">
+													@if($insurance_details['previous_document']!='')
+														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/lifeotherdoc/'.$insurance_details['previous_document']) }}" target="_blank">{{ $insurance_details['previous_document'] }}</a></label>
+													@endif
+													@if($insurance_details['other_document']!='')
+														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/lifepreviousdoc/'.$insurance_details['other_document']) }}" target="_blank">{{ $insurance_details['other_document'] }}</a></label>
+													@endif
+													</div>	
+												</div>												
+												 @endif												 
+											  
+											</div>
+											<div class="modal-footer">
+											  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+												Close
+											  </button>
+											</div>
+										  </div>
+										</div>
+							  </div>
 							      @endforeach
 							     
 							    </tbody>

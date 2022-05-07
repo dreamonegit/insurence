@@ -85,12 +85,12 @@ class CustomerController extends Controller
 				if(isset($get_policy_details->remarks)){
 					$return_policy[$key]['remarks'] = $get_policy_details->remarks;
 				}
-
+				$return_policy[$key]['previous_document'] = $get_policy_details->previous_document;
+				$return_policy[$key]['other_document'] = $get_policy_details->other_document;
                 $return_policy[$key]['insurance_id'] = $value['id'];
             }
 
             $this->data["get_insurance_details"] = $return_policy;
-
 
             return view('admin.customer.view-customer',$this->data);
     }
