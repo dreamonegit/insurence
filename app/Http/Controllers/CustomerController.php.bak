@@ -92,7 +92,6 @@ class CustomerController extends Controller
 
             $this->data["get_insurance_details"] = $return_policy;
 
-echo "<pre>"; print_r($this->data["get_insurance_details"]); exit;
             return view('admin.customer.view-customer',$this->data);
     }
 

@@ -50,11 +50,11 @@
 						    </div>
 							<div class="form-group">
 						     <label>Insurance Starting Date</label>
-						     <input type="text" class="form-control form-control-lg" name="insurance_starting_date" value="@if(isset($healthinsurance)){{ $healthinsurance->insurance_starting_date }} @endif">
+						     <input type="text" class="form-control form-control-lg" name="insurance_starting_date">
 						    </div>
 							<div class="form-group">
 						     <label>Insurance Renewal Date</label>
-						     <input type="text" class="form-control form-control-lg" name="insurance_renewal_date" value="@if(isset($healthinsurance)){{ $healthinsurance->insurance_renewal_date }} @endif">
+						     <input type="text" class="form-control form-control-lg" name="insurance_renewal_date">
 						    </div>
                             <div class="form-group">
                               <label>Remarks</label>

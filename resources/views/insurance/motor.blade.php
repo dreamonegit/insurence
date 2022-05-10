@@ -62,6 +62,14 @@
 						     <label>Other Document</label>
 						     <input type="file" class="form-control form-control-lg" name="other_document">
 						    </div>
+							<div class="form-group">
+						     <label>Insurance Starting Date</label>
+						     <input type="text" class="form-control form-control-lg" name="insurance_starting_date" value="@if(isset($motorinsurance)){{ $motorinsurance->insurance_starting_date }} @endif">
+						    </div>
+							<div class="form-group">
+						     <label>Insurance Renewal Date</label>
+						     <input type="text" class="form-control form-control-lg" name="insurance_renewal_date" value="@if(isset($motorinsurance)){{ $motorinsurance->insurance_renewal_date }} @endif">
+						    </div>
                             <div class="form-group">
                               <label>Remarks</label>
                               <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="@if(isset($motorinsurance)){{ $motorinsurance->remarks }} @endif">

@@ -170,6 +170,8 @@ class InsuranceController extends Controller
       	$healthinsurance->insurance_type_id = Session::get('insurance_type');
 		$healthinsurance->insurance_type = $request->input('insurance_type');
 		$healthinsurance->previous_year = $request->input('previous_year');
+		$healthinsurance->insurance_starting_date = $request->input('insurance_starting_date');
+		$healthinsurance->insurance_renewal_date = $request->input('insurance_renewal_date');
 		$healthinsurance->remarks = $request->input('remarks');
 		$healthinsurance->status = '1';
 		$image = $previous_documents = $other_documents = '';
@@ -206,6 +208,8 @@ class InsuranceController extends Controller
       	$motorinsurance->insurance_type = $request->input('insurance_type');
 		$motorinsurance->vehicle_type = $request->input('vehicle_type');
 		$motorinsurance->previous_year = $request->input('previous_year');
+		$motorinsurance->insurance_starting_date = $request->input('insurance_starting_date');
+		$motorinsurance->insurance_renewal_date = $request->input('insurance_renewal_date');
 		$motorinsurance->remarks = $request->input('remarks');
 		$image = $previous_documents = $other_documents = '';
 		if ($request->file('previous_document')) {
@@ -241,6 +245,8 @@ class InsuranceController extends Controller
       	$life_insurance->insurance_type_id = Session::get('insurance_type');
 		$life_insurance->insurance_type = $request->input('insurance_type');
 		$life_insurance->previous_year = $request->input('previous_year');
+		$life_insurance->insurance_starting_date = $request->input('insurance_starting_date');
+		$life_insurance->insurance_renewal_date = $request->input('insurance_renewal_date');
 		$life_insurance->remarks = $request->input('remarks');
 		$life_insurance->status = '1';
 		$image = $previous_documents = $other_documents = '';

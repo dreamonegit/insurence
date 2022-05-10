@@ -109,6 +109,8 @@
 							      <tr>
 							        <th>Insurance Type</th>
 							        <th>Policy Number</th>
+									<th>Starting Date</th>
+									<th>Renewal Date</th>
 							        <th>Remarks</th>
 							        <th>Actions</th>
 									<th>Upload Document</th>
@@ -120,6 +122,8 @@
 							      <tr>
 							        <td>{{ $insurance_details['insurance_type'] }}</td>
 							        <td>@isset($insurance_details['previous_year']) {{ $insurance_details['previous_year'] }} @endif</td>
+									<td>@isset($insurance_details['insurance_starting_date']) {{ $insurance_details['insurance_starting_date'] }} @endif</td>
+									<td>@isset($insurance_details['insurance_renewal_date']) {{ $insurance_details['insurance_renewal_date'] }} @endif</td>
 							        <td>@isset($insurance_details['remarks']) {{ $insurance_details['remarks'] }} @endif</td>
 							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}">Edit</a></td>
 									<td><a href="#" class="badge badge-info linkdec" data-bs-toggle="modal" data-bs-target="#smallModal{{ $insurance_details['insurance_id'] }}">View </a></td>
@@ -155,7 +159,7 @@
 												<div class="row">
 													<div class="col mb-3">
 													@if($insurance_details['previous_document']!='')
-														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/healthotherdoc/'.$insurance_details['previous_document']) }}" target="_blank">{{ $insurance_details['previous_document'] }}</a></label>
+													<label for="nameSmall" class="form-label"><a href="{{ asset('storage/healthotherdoc/'.$insurance_details['previous_document']) }}" target="_blank">{{ $insurance_details['previous_document'] }}</a></label>
 												    @endif
 													@if($insurance_details['other_document']!='')
 														<label for="nameSmall" class="form-label"><a href="{{ asset('storage/healthpreviousdoc/'.$insurance_details['other_document']) }}" target="_blank">{{ $insurance_details['other_document'] }}</a></label>
