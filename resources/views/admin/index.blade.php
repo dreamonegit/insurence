@@ -28,10 +28,10 @@
                 <div class="card bg-gradient-danger card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total User <i class="mdi mdi-heart-pulse"></i>
+                    <h4 class="font-weight-normal mb-3">Health Insurance<i class="mdi mdi-heart-pulse mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">{{ $healthusercount }}</h2>
-                    <h6 class="card-text">Health Insurance</h6>
+                    <h6 class="card-text">Total User</h6>
                   </div>
                 </div>
               </div>
@@ -39,10 +39,10 @@
                 <div class="card bg-gradient-info card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total User <i class="mdi mdi-car"></i>
+                    <h4 class="font-weight-normal mb-3">Motor Insurance<i class="mdi mdi-car mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">{{ $motorusercount }}</h2>
-                    <h6 class="card-text">Motor Insurance</h6>
+                    <h6 class="card-text">Total User</h6>
                   </div>
                 </div>
               </div>
@@ -50,10 +50,10 @@
                 <div class="card bg-gradient-success card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total User <i class="mdi mdi-account-circle"></i>
+                    <h4 class="font-weight-normal mb-3">Life Insurance<i class="mdi mdi-human-male-female mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">{{ $lifeusercount }}</h2>
-                    <h6 class="card-text">Life Insurance</h6>
+                    <h6 class="card-text">Total User</h6>
                   </div>
                 </div>
               </div>
@@ -64,10 +64,10 @@
                 <div class="card bg-gradient-green card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total User <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">This Weekly Insurance<i class="mdi mdi-calendar-week-begin mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">{{ $countweek }}</h2>
-                    <h6 class="card-text">This Week User</h6>
+                    <h6 class="card-text">Total User</h6>
                   </div>
                 </div>
               </div>
@@ -75,10 +75,10 @@
                 <div class="card bg-gradient-purple card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total User <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">This Monthly Insurance<i class="mdi mdi-calendar-month mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">{{ $countmonth }}</h2>
-                    <h6 class="card-text">This Month User</h6>
+                    <h6 class="card-text">Total User</h6>
                   </div>
                 </div>
               </div>
@@ -86,10 +86,10 @@
                 <div class="card bg-gradient-other card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total User <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                    <h4 class="font-weight-normal mb-3">This Yearly Insurance<i class="mdi mdi-chart-bar mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">{{ $countyear }}</h2>
-                    <h6 class="card-text">This Year User</h6>
+                    <h6 class="card-text">Total User</h6>
                   </div>
                 </div>
               </div>

@@ -23,20 +23,20 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/list-staff') }}">
                 <span class="menu-title">List Staff</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-account-plus menu-icon"></i>
               </a>
             </li>
             @endif
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/list-customerdetails') }}">
                 <span class="menu-title">Customer details</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-account-card-details-outline menu-icon"></i>
               </a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="{{ url('insurance/add-insurance') }}">
                 <span class="menu-title">Create Insurance</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-clipboard-text menu-icon"></i>
               </a>
             </li>
           </ul>

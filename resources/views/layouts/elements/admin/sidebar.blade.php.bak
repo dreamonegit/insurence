@@ -3,7 +3,7 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{ asset('storage/profileimage/'.auth::user()->profile_image) }}" alt="profile">
+                  <img src="{{ asset('storage/profile/'.auth::user()->profile_image) }}" alt="profile">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
@@ -23,14 +23,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/list-staff') }}">
                 <span class="menu-title">List Staff</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-account-plus menu-icon"></i>
               </a>
             </li>
             @endif
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/list-customerdetails') }}">
                 <span class="menu-title">Customer details</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-account-card-details-outline menu-icon"></i>
               </a>
             </li>
              <li class="nav-item">
