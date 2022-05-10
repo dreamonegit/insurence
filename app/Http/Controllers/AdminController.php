@@ -137,6 +137,7 @@ class AdminController extends Controller
         } else {
             $customers = new Customers();
         }		
+
         $customers ->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');
 		$customers->mobile = $request->input('mobile');
@@ -145,7 +146,7 @@ class AdminController extends Controller
 		$customers->city = $request->input('city');
         $customers->state = $request->input('state');		
 		$customers->country = $request->input('country');
-		$customers->status = $request->input('status');
+		//$customers->status = $request->input('status');
         $customers->save();
 		return redirect('/admin/list-customerdetails')->with('message', 'successfully customer details added...');	
 	}
