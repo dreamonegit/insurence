@@ -23,7 +23,7 @@
                 
                 <div class="dropdown-divider"></div>
 				        <a class="dropdown-item" href="{{ url('/admin/myprofile')}}">
-                  <i class="mdi mdi-logout me-2 text-primary"></i> My Profile </a>
+                  <i class="mdi mdi-account-check-outline me-2 text-primary"></i> My Profile </a>
                 <a class="dropdown-item" href="{{ url('/admin/logout') }}">
                  <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
               </div>
