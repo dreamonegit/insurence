@@ -40,33 +40,45 @@
                                 </div>
                             
                                 <div class="form-group col-md-6">
-                                    <label>Insurance Date</label>
-                                    <input type="date" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Application Number</label>
-                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Application Number" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the First name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Company Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Company Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
                             </div>
 
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Plan Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Plan Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the First name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Sum Assumed</label>
-                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Sum Assumed" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
-                            </div>                        
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the First name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                            </div>
+                         
                     </div>
                     <div class="card-footer">
                         <div class="row">

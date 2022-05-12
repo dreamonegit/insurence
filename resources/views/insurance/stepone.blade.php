@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group col-md-6">
                               <label>Mobile</label>
-                              <input type="number" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
+                              <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
                             </div>
                         </div>
 

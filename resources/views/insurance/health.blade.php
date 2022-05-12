@@ -14,7 +14,7 @@
                 @csrf
 
                   <div class="card">
-                    <div class="card-header">Step 3: Health Insurance</div>
+                    <div class="card-header">Step 3: Insurance</div>
   
                     <div class="card-body">
   
@@ -27,8 +27,48 @@
                                     </ul>
                                 </div>
                             @endif
-  
-                            <div class="form-group">
+                            
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>EMI</label>
+                                    <input type="number" class="form-control form-control-lg" name="first_name" placeholder="Enter the EMI" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>EMI Month</label>
+                                    <input type="number" class="form-control form-control-lg" name="last_name" placeholder="Enter the EMI Month" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Premium Paying Term</label>
+                                    <input type="number" class="form-control form-control-lg" name="first_name" placeholder="Enter the Premium Paying Term" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Policy Term (Total Coverage)</label>
+                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Policy Term (Total Coverage)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Gross Premium  (With GST)</label>
+                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Gross Premium  (With GST)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Net Premium</label>
+                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Net Premium" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                            </div>
+
+                             <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Policy No</label>
+                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Policy No" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
                                 <label for="exampleFormControlSelect1">Policy Type</label>
                                   <select class="form-control form-control-lg" id="insurance_type" name="insurance_type">
                                     <option value="">------Choose Option------</option>
@@ -59,7 +99,7 @@
                             <div class="form-group">
                               <label>Remarks</label>
                               <input type="text" class="form-control form-control-lg" name="remarks" placeholder="Enter Remarks" aria-label="remarks" value="@if(isset($healthinsurance)){{ $healthinsurance->remarks }} @endif">
-                            </div>
+                            </div> -->
                        
                     </div>
                     <div class="card-footer">
