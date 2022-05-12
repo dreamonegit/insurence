@@ -121,8 +121,7 @@ class AdminController extends Controller
                             "customers.*", 
                             "state.StateName as state_name"
                         )
-                        ->leftJoin("state", "state.StateID", "=", "customers.state")
-                        ->get();
+                        ->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('is_deleted','0')->get();
 
 		}
 	return view('admin.customer.list-customerdetails',$this->data);

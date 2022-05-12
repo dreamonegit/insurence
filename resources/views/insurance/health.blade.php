@@ -151,24 +151,36 @@
                 },
                 sum_assumed: {
                   required: true,
+                  digits: true
                 },
                 emi: {
-                    required: true
+                    required: true,
+                    digits: true
+                },
+                emi_due: {
+                    required: true,
+                    digits: true
                 },
                 emi_month: {
-                    required: true
+                    required: true,
+                    digits: true,
+                    max: 12
                 },
                 premium_term: {
-                    required: true
+                    required: true,
+                    digits: true,
                 },
                 policy_term: {
-                    required: true
+                    required: true,
+                    digits: true,
                 },
                 gross_premium: {
-                    required: true
+                    required: true,
+                    digits: true,
                 },
                 net_premium: {
-                    required: true
+                    required: true,
+                    digits: true,
                 },
                 policy_no: {
                     required: true
@@ -176,13 +188,38 @@
             },
             messages: {
                 plan_name: "Plan Name is required",
-                sum_assumed: "Sum Assumed is required",
-                emi: "EMI is required",
-                emi_month:"EMI Month is required",
-                premium_term: "Premium Paying Term is required",
-                policy_term: "Policy Term (Total Coverage) is required",
-                gross_premium: "Gross Premium (With GST) is required",
-                net_premium: "Net Premium is required",
+                sum_assumed: {
+                    required: "Sum Assumed is required",
+                    digits: "Please Enter in digits"
+                },
+                emi: {
+                    required: "EMI is required",
+                    digits: "Please Enter in digits"
+                },
+                emi_month:{
+                    required: "EMI Month is required",
+                    digits: "Please Enter in digits"
+                },
+                emi_due:{
+                    required: "EMI Month is required",
+                    digits: "Please Enter in digits"
+                },
+                premium_term: {
+                    required: "Premium Paying Term is required",
+                    digits: "Please Enter in digits"
+                },
+                policy_term: {
+                    required: "Policy Term (Total Coverage) is required",
+                    digits: "Please Enter in digits"
+                },
+                gross_premium: {
+                    required: "Gross Premium (With GST) is required",
+                    digits: "Please Enter in digits"
+                },
+                net_premium:{
+                    required: "Net Premium is required",
+                    digits: "Please Enter in digits"
+                }, 
                 policy_no: "Policy No is required",
                 
             }
