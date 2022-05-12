@@ -9,9 +9,7 @@ use DB;
 use App\Models\User;
 use App\Models\Customers;
 use App\Models\Insurance;
-use App\Models\Motorinsurance;
 use App\Models\Healthinsurance;
-use App\Models\Life_Insurance;
 use App\Models\State;
 use Session;
 use Redirect;
@@ -98,31 +96,32 @@ class InsuranceController extends Controller
 
     public function saveselectinsurance(Request $request){
         if(empty(Session::get('insurance_type'))){
-        	$Insurance = new Insurance();
+        	$Insurance = new Healthinsurance();
         } else {
-            $Insurance = Insurance::where("id", Session::get('insurance_type'))->first();
-        }		
-		$Insurance->staff_id = Auth::user()->id;
+            $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
+        }	
+
+
+		$Insurance->created_user_id = Auth::user()->id;
       	$Insurance->customer_id = Session::get('customer_id');
 		$Insurance->insurance_type = $request->input('insurance_type');
 		$Insurance->status = '0';
+		$Insurance->insurance_date = $request->input('insurance_date');
+		$Insurance->sm_ssm_name = $request->input('sm_ssm');
+		$Insurance->payonehub_code = $request->input('advisor_code');
+		$Insurance->policybazaar_code = $request->input('policybazaar_code');
+		$Insurance->advisor_name = $request->input('advisor_name');
+		$Insurance->application_no = $request->input('application_number');
+		$Insurance->company_name = $request->input('company_name');
+
         $Insurance->save();
 
         Session::put('insurance_type', $Insurance->id);
 
         //check type and redirect
-        if($request->input('insurance_type') == '1')
-        {
-        	return redirect('/insurance/health-insurance');	
-        }
-        else if($request->input('insurance_type') == '2')
-        {
-        	return redirect('/insurance/motor-insurance');	
-        }
-        else if($request->input('insurance_type') == '3')
-        {
-           return redirect('/insurance/life-insurance');
-        }
+        
+        return redirect('/insurance/health-insurance');	
+        
 	}
 
 
@@ -139,97 +138,32 @@ class InsuranceController extends Controller
     	
     }
 
-    public function motorinsurance(Request $request)
-    {
-    	if(empty(Session::get('insurance_type'))){
-    		return view('insurance.motor');
-        } else {
-            $this->data["motorinsurance"] = Motorinsurance::where("insurance_type_id", Session::get('insurance_type'))->first();
-
-        	return view('insurance.motor',$this->data);
-        }		
-
-    }
-    public function lifeinsurance(Request $request)
-    {
-
-    	if(empty(Session::get('insurance_type'))){
-    		    	return view('insurance.life');
-        } else {
-            $this->data["lifeinsurance"] = Life_Insurance::where("insurance_type_id", Session::get('insurance_type'))->first();
-
-        	return view('insurance.life',$this->data);
-        }		
-    }
-
+  
 
     public function savehealthinsurance(Request $request){
-        
-        $healthinsurance = new Healthinsurance(); 
+        if(empty(Session::get('insurance_type'))){
+        	$Insurance = new Healthinsurance();
+        } else {
+            $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
+        }	
+
 		
-      	$healthinsurance->insurance_type_id = Session::get('insurance_type');
-		$healthinsurance->insurance_type = $request->input('insurance_type');
-		$healthinsurance->previous_year = $request->input('previous_year');
-		$healthinsurance->insurance_starting_date = $request->input('insurance_starting_date');
-		$healthinsurance->insurance_renewal_date = $request->input('insurance_renewal_date');
-		$healthinsurance->remarks = $request->input('remarks');
-		$healthinsurance->status = '1';
-		$image = $previous_documents = $other_documents = '';
-		if ($request->file('previous_document')) {
-			 $previous_document = $request->file('previous_document');
-			 $previous_document_name = time() . '.' . $previous_document->getClientOriginalExtension();
-			 $path = $request->file('previous_document')->storeAs('healthpreviousdoc/', $previous_document_name, 'public');
-			 $healthinsurance->previous_document = $previous_document_name;
-		}
-		if ($request->file('other_document')) {
-			 $other_document = $request->file('other_document');
-			 $other_document_name = time() . '.' . $other_document->getClientOriginalExtension();
-			 $path = $request->file('other_document')->storeAs('healthotherdoc/', $other_document_name, 'public');
-			 $healthinsurance->other_document = $other_document_name;			
-		}
-        $healthinsurance->save();
-          if(Session::get('customer_id')){
-            $customers = Customers::where("id", Session::get('customer_id'))->first();
-        } 
-        $customers->status = '1';
-        $customers->save();
-
-        Session::put('insurance_type', '');
-        Session::put('customer_id', '');
-
-        return redirect('/insurance/insurance-complete');	
-	}
-
-
-	 public function savemotorinsurance(Request $request){
+		$Insurance->plan_name = $request->input('plan_name');
+		$Insurance->sum_assured = $request->input('sum_assumed');
+		$Insurance->emi = $request->input('emi');
+		$Insurance->emi_month = $request->input('emi_month');
+		$Insurance->emi_due = $request->input('emi_due');
+		$Insurance->premium_paying_term = $request->input('premium_term');
+		$Insurance->policy_term = $request->input('policy_term');
+		$Insurance->gross_premium = $request->input('gross_premium');
+		$Insurance->net_premium = $request->input('net_premium');
+		$Insurance->policy_no = $request->input('policy_no');
+		$Insurance->status = '1';
+        $Insurance->save();
         
-        $motorinsurance = new Motorinsurance();   
-        $motorinsurance->insurance_type_id = Session::get('insurance_type');   
-      	$motorinsurance->insurance_type = $request->input('insurance_type');
-		$motorinsurance->vehicle_type = $request->input('vehicle_type');
-		$motorinsurance->previous_year = $request->input('previous_year');
-		$motorinsurance->insurance_starting_date = $request->input('insurance_starting_date');
-		$motorinsurance->insurance_renewal_date = $request->input('insurance_renewal_date');
-		$motorinsurance->remarks = $request->input('remarks');
-		$image = $previous_documents = $other_documents = '';
-		if ($request->file('previous_document')) {
-			 $previous_document = $request->file('previous_document');
-			 $previous_document_name = time() . '.' . $previous_document->getClientOriginalExtension();
-			 $path = $request->file('previous_document')->storeAs('motorpreviousdoc/', $previous_document_name, 'public');
-			 $motorinsurance->previous_document = $previous_document_name;
-		}
-		if ($request->file('other_document')) {
-			 $other_document = $request->file('other_document');
-			 $other_document_name = time() . '.' . $other_document->getClientOriginalExtension();
-			 $path = $request->file('other_document')->storeAs('motorotherdoc/', $other_document_name, 'public');
-			 $motorinsurance->other_document = $other_document_name;			
-		}
-        $motorinsurance->save();
-
         if(Session::get('customer_id')){
             $customers = Customers::where("id", Session::get('customer_id'))->first();
         } 
-        
         $customers->status = '1';
         $customers->save();
 
@@ -238,43 +172,7 @@ class InsuranceController extends Controller
 
         return redirect('/insurance/insurance-complete');	
 	}
-    public function savelifeinsurance(Request $request){
-        
-        $life_insurance = new Life_insurance(); 
-		
-      	$life_insurance->insurance_type_id = Session::get('insurance_type');
-		$life_insurance->insurance_type = $request->input('insurance_type');
-		$life_insurance->previous_year = $request->input('previous_year');
-		$life_insurance->insurance_starting_date = $request->input('insurance_starting_date');
-		$life_insurance->insurance_renewal_date = $request->input('insurance_renewal_date');
-		$life_insurance->remarks = $request->input('remarks');
-		$life_insurance->status = '1';
-		$image = $previous_documents = $other_documents = '';
-		if ($request->file('previous_document')) {
-			 $previous_document = $request->file('previous_document');
-			 $previous_document_name = time() . '.' . $previous_document->getClientOriginalExtension();
-			 $path = $request->file('previous_document')->storeAs('lifepreviousdoc/', $previous_document_name, 'public');
-			 $life_insurance->previous_document = $previous_document_name;
-		}
-		if ($request->file('other_document')) {
-			 $other_document = $request->file('other_document');
-			 $other_document_name = time() . '.' . $other_document->getClientOriginalExtension();
-			 $path = $request->file('other_document')->storeAs('lifeotherdoc/', $other_document_name, 'public');
-			 $life_insurance->other_document = $other_document_name;			
-		}		
-		$life_insurance->save();
-          if(Session::get('customer_id')){
-            $customers = Customers::where("id", Session::get('customer_id'))->first();
-        } 
-        
-        $customers->status = '1';
-        $customers->save();
 
-        Session::put('insurance_type', '');
-        Session::put('customer_id', '');
-
-        return redirect('/insurance/insurance-complete');	
-	}
 
 	public function insurance_complete(Request $request)
     {

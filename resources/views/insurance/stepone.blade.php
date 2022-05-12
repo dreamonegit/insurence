@@ -30,36 +30,36 @@
   
                         <div class="row">
                             <div class="form-group col-md-6">
-                              <label>First Name</label>
+                              <label class="required">First Name</label>
                               <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the First name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                             </div>
                             <div class="form-group col-md-6">
-                              <label>Last Name</label>
+                              <label class="required">Last Name</label>
                               <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                              <label>E-mail</label>
+                              <label class="required">E-mail</label>
                               <input type="email" class="form-control form-control-lg" placeholder="Enter the E-mail" name="email" aria-label="E-mail" value="@if(isset($customers)){{ $customers->email }} @endif">
                             </div>
                             <div class="form-group col-md-6">
-                              <label>Mobile</label>
+                              <label class="required">Mobile</label>
                               <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Enter the Mobile" aria-label="Mobile" value="@if(isset($customers)){{ $customers->mobile }} @endif">
                             </div>
                         </div>
 
                         <div class="row">
     						 <div class="form-group col-md-6">
-        						<label>Country</label>
+        						<label class="required">Country</label>
         			           <select class="form-control form-control-lg" id="countries" name="country">
         				        <option value="">---Choose the Country ---</option>
         						  <option value="1" @if(isset($customers))@if($customers->country==1) {{ "selected" }} @endif @endif>India</option>
         						  </select>
     						</div>
     	                     <div class="form-group col-md-6">
-        						  <label>State</label>
+        						  <label class="required">State</label>
         						  <select class="form-control form-control-lg" id="state" name="state">
         						  <option value="">---choose the State ---</option>
         						    @foreach($state as $statesvalue)
@@ -71,11 +71,11 @@
                         
                         <div class="row">
                             <div class="form-group col-md-6">
-                              <label>City</label>
+                              <label class="required">City</label>
                               <input type="text" class="form-control form-control-lg" name="city" placeholder="Enter the City" aria-label="City" value="@if(isset($customers)){{ $customers->city }} @endif">
                             </div>
                             <div class="form-group col-md-6">
-                              <label>Address</label>
+                              <label class="required">Address</label>
                               <input type="text" class="form-control form-control-lg" name="address" placeholder="Enter the Address" aria-label="Address" value="@if(isset($customers)){{ $customers->address }} @endif">
                             </div>
                         </div>

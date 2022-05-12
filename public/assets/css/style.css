@@ -14468,3 +14468,8 @@ a:hover {
 .button-right {
   float: right;
 }
+
+.required:after {
+    content:" *";
+    color: red;
+  }

@@ -31,41 +31,60 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>EMI</label>
-                                    <input type="number" class="form-control form-control-lg" name="first_name" placeholder="Enter the EMI" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label class="required">Plan Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="plan_name" placeholder="Enter the Plan Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>EMI Month</label>
-                                    <input type="number" class="form-control form-control-lg" name="last_name" placeholder="Enter the EMI Month" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label class="required">Sum Assumed</label>
+                                    <input type="text" class="form-control form-control-lg" name="sum_assumed" placeholder="Enter the Sum Assumed" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                            </div>        
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="required">EMI</label>
+                                    <input type="number" class="form-control form-control-lg" name="emi" placeholder="Enter the EMI" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="required">EMI Month</label>
+                                    <input type="number" class="form-control form-control-lg" name="emi_month" placeholder="Enter the EMI Month" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
                             </div>
 
                             <div class="row">
+
                                 <div class="form-group col-md-6">
-                                    <label>Premium Paying Term</label>
-                                    <input type="number" class="form-control form-control-lg" name="first_name" placeholder="Enter the Premium Paying Term" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label class="required">EMI Due</label>
+                                    <input type="text" class="form-control form-control-lg" name="emi_due" placeholder="Enter the EMI Due" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
+
                                 <div class="form-group col-md-6">
-                                    <label>Policy Term (Total Coverage)</label>
-                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Policy Term (Total Coverage)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label class="required">Premium Paying Term</label>
+                                    <input type="number" class="form-control form-control-lg" name="premium_term" placeholder="Enter the Premium Paying Term" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
+                              
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Gross Premium  (With GST)</label>
-                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Gross Premium  (With GST)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label class="required">Policy Term (Total Coverage)</label>
+                                    <input type="text" class="form-control form-control-lg" name="policy_term" placeholder="Enter the Policy Term (Total Coverage)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Net Premium</label>
-                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Net Premium" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label class="required">Gross Premium  (With GST)</label>
+                                    <input type="text" class="form-control form-control-lg" name="gross_premium" placeholder="Enter the Gross Premium  (With GST)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
+                                
                             </div>
 
                              <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Policy No</label>
-                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Policy No" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label class="required">Net Premium</label>
+                                    <input type="text" class="form-control form-control-lg" name="net_premium" placeholder="Enter the Net Premium" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="required">Policy No</label>
+                                    <input type="text" class="form-control form-control-lg" name="policy_no" placeholder="Enter the Policy No" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
                             </div>
                             <!-- <div class="form-group">
@@ -127,20 +146,44 @@
          $('#health_insurance').validate({ 
             ignore: ".ignore",
             rules: {
-                insurance_type: {
+                plan_name: {
                     required: true
                 },
-                previous_year: {
+                sum_assumed: {
                   required: true,
                 },
-                remarks: {
+                emi: {
+                    required: true
+                },
+                emi_month: {
+                    required: true
+                },
+                premium_term: {
+                    required: true
+                },
+                policy_term: {
+                    required: true
+                },
+                gross_premium: {
+                    required: true
+                },
+                net_premium: {
+                    required: true
+                },
+                policy_no: {
                     required: true
                 },
             },
             messages: {
-                insurance_type: "Policy Type is required",
-                previous_year: "Previous year policy number is required",
-                remarks: "Remark is required",
+                plan_name: "Plan Name is required",
+                sum_assumed: "Sum Assumed is required",
+                emi: "EMI is required",
+                emi_month:"EMI Month is required",
+                premium_term: "Premium Paying Term is required",
+                policy_term: "Policy Term (Total Coverage) is required",
+                gross_premium: "Gross Premium (With GST) is required",
+                net_premium: "Net Premium is required",
+                policy_no: "Policy No is required",
                 
             }
         });

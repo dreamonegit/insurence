@@ -30,7 +30,7 @@
   
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="exampleFormControlSelect1">Insurance Type</label>
+                                    <label for="exampleFormControlSelect1" class="required">Insurance Type</label>
                                       <select class="form-control form-control-lg" id="insurance_type" name="insurance_type">
                                         <option value="">------Choose Option------</option>
                                         <option value="1" @if(isset($insurance))@if($insurance->insurance_type==1) {{ "selected" }} @endif @endif >Health Insurance</option>
@@ -40,33 +40,44 @@
                                 </div>
                             
                                 <div class="form-group col-md-6">
-                                    <label>Insurance Date</label>
-                                    <input type="date" class="form-control form-control-lg" name="last_name" placeholder="Enter the Last Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label class="required">Insurance Date</label>
+                                    <input type="date" class="form-control form-control-lg" name="insurance_date" placeholder="Enter the Insurance Date" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
                             </div>
 
-                            <div class="row">
+                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Application Number</label>
-                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Application Number" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label class="required">SM/SSM Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="sm_ssm" placeholder="Enter the SM/SSM Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Company Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Company Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label class="required">Advisor's Payone hub Code</label>
+                                    <input type="text" class="form-control form-control-lg" name="advisor_code" placeholder="Enter the Advisor's Payone hub Code" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="required">Advisor's Policybazaar code</label>
+                                    <input type="text" class="form-control form-control-lg" name="policybazaar_code" placeholder="Enter the Advisor's Policybazaar code" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="required">Advisor Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="advisor_name" placeholder="Enter the Advisor Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
                             </div>
 
 
+
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Plan Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter the Plan Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <label class="required">Application Number</label>
+                                    <input type="text" class="form-control form-control-lg" name="application_number" placeholder="Enter the Application Number" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Sum Assumed</label>
-                                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter the Sum Assumed" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <label class="required">Company Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="company_name" placeholder="Enter the Company Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
                                 </div>
-                            </div>                        
+                            </div>                
                     </div>
                     <div class="card-footer">
                         <div class="row">
@@ -94,10 +105,38 @@
             rules: {
                 insurance_type: {
                     required: true
+                },
+                insurance_date: {
+                    required: true
+                },
+                sm_ssm: {
+                    required: true
+                },
+                advisor_code: {
+                    required: true
+                },                
+                policybazaar_code: {
+                    required: true
                 },        
+                advisor_name: {
+                    required: true
+                },        
+                application_number: {
+                    required: true
+                },
+                company_name: {
+                    required: true
+                },                 
             },
              messages: {
                 insurance_type: "Insurance Type is required",
+                insurance_date: "Insurance Type is required",
+                sm_ssm: "SM/SSM Name is required",
+                advisor_code: "Advisor's Payone hub Code is required",
+                policybazaar_code: "Advisor's Policybazaar code is required",
+                advisor_name: "Advisor Name is required",
+                application_number: "Application Number is required",
+                company_name: "Company Name is required",
             }
         });
     </script>
