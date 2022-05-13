@@ -25,7 +25,7 @@
             </div>
             <div class="row">
               <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card text-white bg-danger card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Health Insurance<i class="mdi mdi-heart-pulse mdi-24px float-right"></i>
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card text-white bg-secondary card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Motor Insurance<i class="mdi mdi-car mdi-24px float-right"></i>
@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card text-white bg-success card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Life Insurance<i class="mdi mdi-human-male-female mdi-24px float-right"></i>
@@ -61,7 +61,7 @@
 
             <div class="row">
               <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-green card-img-holder text-white">
+                <div class="card text-dark bg-info card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">This Weekly Insurance<i class="mdi mdi-calendar-week-begin mdi-24px float-right"></i>
@@ -72,7 +72,7 @@
                 </div>
               </div>
               <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-purple card-img-holder text-white">
+                <div class="card text-dark bg-warning card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">This Monthly Insurance<i class="mdi mdi-calendar-month mdi-24px float-right"></i>
@@ -83,7 +83,7 @@
                 </div>
               </div>
               <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-other card-img-holder text-white">
+                <div class="card bg-primary card-img-holder text-white">
                   <div class="card-body">
                     <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">This Yearly Insurance<i class="mdi mdi-chart-bar mdi-24px float-right"></i>

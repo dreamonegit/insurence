@@ -79,20 +79,9 @@ class CustomerController extends Controller
                     $get_policy_details = Life_insurance::where("insurance_type_id", $value['id'])->first();
                     $return_policy[$key]['insurance_type'] = 'Life';
                 }
-				if(isset($get_policy_details->previous_year)){
-					$return_policy[$key]['previous_year'] = $get_policy_details->previous_year;
-				}
 				if(isset($get_policy_details->remarks)){
 					$return_policy[$key]['remarks'] = $get_policy_details->remarks;
 				}
-				if(isset($get_policy_details->insurance_starting_date)){
-					$return_policy[$key]['insurance_starting_date'] = $get_policy_details->insurance_starting_date;
-				}
-				if(isset($get_policy_details->insurance_renewal_date)){
-					$return_policy[$key]['insurance_renewal_date'] = $get_policy_details->insurance_renewal_date;
-				}
-				$return_policy[$key]['previous_document'] = $get_policy_details->previous_document;
-				$return_policy[$key]['other_document'] = $get_policy_details->other_document;
                 $return_policy[$key]['insurance_id'] = $value['id'];
             }
 
