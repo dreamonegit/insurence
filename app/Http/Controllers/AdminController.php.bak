@@ -190,7 +190,7 @@ class AdminController extends Controller
 		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
 		
 	}
-	public function exportcustomerdetails(Request $request){
+	public function exportstaff(Request $request){
 		
 		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
 		

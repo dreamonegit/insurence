@@ -116,7 +116,7 @@
 							    	@foreach($get_insurance_details as $insurance_details)
 							      <tr>
 							        <td>{{ $insurance_details['insurance_type'] }}</td>
-							        <td>@isset($insurance_details['company_name']) {{ $insurance_details['company_name'] }} @endif</td>
+							        <td>@isset($insurance_details['previous_year']) {{ $insurance_details['previous_year'] }} @endif</td>
 							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}">Edit</a></td>
 									<td><a href="#" class="badge badge-info linkdec" data-bs-toggle="modal" data-bs-target="#smallModal{{ $insurance_details['insurance_id'] }}">View </a></td>
 								  </tr>

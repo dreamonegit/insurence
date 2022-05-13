@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin',ClearFormSes
 	Route::get('/edit-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'editcustomerdetails'])->middleware('admin');
 	Route::get('/delete-customerdetails/{id}', [App\Http\Controllers\AdminController::class, 'deletecustomerdetails'])->middleware('admin');
 	Route::post('/save-customerdetails', [App\Http\Controllers\AdminController::class, 'savecustomerdetails'])->middleware('admin');
-	Route::post('/export-customerdetails', [App\Http\Controllers\AdminController::class, 'exportcustomerdetails'])->middleware('admin');
+	Route::post('/export-staff', [App\Http\Controllers\AdminController::class, 'exportstaff'])->middleware('admin');
 	Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout'])->middleware('admin');
 	Route::any('/myprofile', [App\Http\Controllers\AdminController::class, 'myprofile'])->middleware('admin');
 

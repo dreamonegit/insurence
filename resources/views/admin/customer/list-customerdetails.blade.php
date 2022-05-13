@@ -17,6 +17,19 @@
                 </ol>
               </nav>
             </div>
+				<form action="{{ url('admin/export-customerdetails') }}" method="post">@csrf
+					<div class="row">
+						<div class="form-group col-3">
+						  <input type="date" class="form-control form-control-lg" name="start_date" placeholder="Start Date" aria-label="customerdetails">
+						</div>
+						<div class="form-group col-md-3">
+						  <input type="date" class="form-control form-control-lg" placeholder="End Date" name="end_date" aria-label="exportcustomerdetails">
+						</div>
+						<div class="form-group col-md-3">
+						  <input type="submit" class="form-control form-control-lg" value="Download">
+						</div>
+					</div>
+				</form>	
             <div class="row">
 				<!-- <div style="width:10%;margin-left: 84%;">
 					<a href="{{ url('admin/add-customerdetails') }}" class="p-3 btn btn-outline-success btn-fw">Add customer</a>

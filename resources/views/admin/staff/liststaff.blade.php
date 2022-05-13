@@ -26,7 +26,7 @@
 						  <input type="date" class="form-control form-control-lg" placeholder="End Date" name="end_date" aria-label="E-mail">
 						</div>
 						<div class="form-group col-md-3">
-						  <input type="submit" class="form-control form-control-lg" value="Export Staff">
+						  <input type="submit" class="form-control form-control-lg" value="Download">
 						</div>
 					</div>
 				</form>			

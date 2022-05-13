@@ -17,25 +17,23 @@
                 </ol>
               </nav>
             </div>
+				<form action="{{ url('admin/export-customerdetails') }}" method="post">@csrf
+					<div class="row">
+						<div class="form-group col-3">
+						  <input type="date" class="form-control form-control-lg" name="start_date" placeholder="Start Date" aria-label="customerdetails">
+						</div>
+						<div class="form-group col-md-3">
+						  <input type="date" class="form-control form-control-lg" placeholder="End Date" name="end_date" aria-label="exportcustomerdetails">
+						</div>
+						<div class="form-group col-md-3">
+						  <input type="submit" class="form-control form-control-lg" value="exportcustomerdetails">
+						</div>
+					</div>
+				</form>	
             <div class="row">
 				<!-- <div style="width:10%;margin-left: 84%;">
 					<a href="{{ url('admin/add-customerdetails') }}" class="p-3 btn btn-outline-success btn-fw">Add customer</a>
 				</div> -->
-			<form action="{{ url('date-search') }}" method="post" id="datetime">{{ csrf_field() }}
-			<label for="date">Date from:</label>
-			  <input type="date" id="datefrom" name="datefrom" min="1997-01-01" max="2030-12-31">
-			  <label for="date">Date to:</label>
-			  <input type="date"id="dateto" name="dateto" min="1997-01-01" max="2030-12-31">
-			  <input type="submit">
-			 </form>
-		
-			  <div class="control-label col-md-12">
-			        <label for="exampleFormControlSelect1">Insurance Type </label>
-					<select class="control-label col-md-3" name="event_id" id="event_id" onchange="if (this.value) window.location.href='/list-game/'+this.value">
-					<option value="all">---Choose the Insurance---</option>
-					</select>	
-			  </div>            
-		
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
@@ -133,7 +131,3 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
 @include('layouts.elements.admin.plugins')
-
-<script>
- $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
-</script>

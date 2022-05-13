@@ -105,7 +105,6 @@ class InsuranceController extends Controller
 		$Insurance->insurance_type = $request->input('insurance_type');
 		$Insurance->status = '0';
 		$Insurance->insurance_date = $request->input('insurance_date');
-		$Insurance->insurance_expiry_date = $request->input('insurance_expiry_date');
 		$Insurance->sm_ssm_name = $request->input('sm_ssm');
 		$Insurance->payonehub_code = $request->input('advisor_code');
 		$Insurance->policybazaar_code = $request->input('policybazaar_code');
