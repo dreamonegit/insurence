@@ -9,6 +9,7 @@ use DB;
 use App\Models\User;
 use App\Models\Customers;
 use App\Models\Insurance;
+use App\Models\Healthinsurance;
 use App\Exports\StaffExports;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\State;
