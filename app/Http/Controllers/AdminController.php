@@ -185,9 +185,9 @@ class AdminController extends Controller
 			return view('admin.mypofile', $this->data);			
 		} 		
 	}
-	public function exportstaff(){
+	public function exportstaff(Request $request){
 		
-		 return Excel::download(new StaffExports, 'staff.xlsx');
+		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
 		
 	}
 	 public function logout(){

@@ -11,9 +11,14 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class StaffExports implements FromCollection,WithHeadings,WithMapping
 {
+	 protected $post;
+
+	 function __construct($postdata) {
+			$this->post = $postdata;
+	 }
     public function collection()
     {
-        return User::select('id','name','email','mobile','status','created_at','updated_at')->where('role',2)->get();
+        return User::select('id','name','email','mobile','status','created_at','updated_at')->whereBetween('created_at', [$this->post['start_date'], $this->post['end_date']])->where('role',2)->get();
     }
     public function map($row): array
     {
