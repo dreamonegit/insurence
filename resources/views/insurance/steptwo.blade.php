@@ -38,10 +38,13 @@
     									<option value="3" @if(isset($insurance))@if($insurance->insurance_type==3) {{ "selected" }} @endif @endif >Life Insurance</option>
                                       </select>
                                 </div>
-                            
-                                <div class="form-group col-md-6">
+                                 <div class="form-group col-md-3">
                                     <label class="required">Insurance Date</label>
                                     <input type="date" class="form-control form-control-lg" name="insurance_date" placeholder="Enter the Insurance Date" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->insurance_date }}@endif">
+                                </div>                           
+                                <div class="form-group col-md-3">
+                                    <label class="required">Insurance Expiry Date</label>
+                                    <input type="date" class="form-control form-control-lg" name="insurance_expiry_date" placeholder="Enter the Insurance Date" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->insurance_expiry_date }} @endif">
                                 </div>
                             </div>
 

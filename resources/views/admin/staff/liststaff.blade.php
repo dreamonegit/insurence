@@ -16,10 +16,26 @@
                 </ol>
               </nav>
             </div>
+			
+				<form action="{{ url('admin/export-staff') }}" method="post">@csrf
+					<div class="row">
+						<div class="form-group col-3">
+						  <input type="date" class="form-control form-control-lg" name="start_date" placeholder="Start Date" aria-label="Staff Name">
+						</div>
+						<div class="form-group col-md-3">
+						  <input type="date" class="form-control form-control-lg" placeholder="End Date" name="end_date" aria-label="E-mail">
+						</div>
+						<div class="form-group col-md-3">
+						  <input type="submit" class="form-control form-control-lg" value="Download">
+						</div>
+					</div>
+				</form>			
+			
             <div class="row">
 				<div style="width:10%;margin-left: 84%;">
 					<a href="{{ url('admin/add-staff') }}" class="p-3 btn btn-outline-success btn-fw">Add Staff</a>
 				</div>
+			</div>
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">

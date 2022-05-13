@@ -100,20 +100,19 @@ class InsuranceController extends Controller
         } else {
             $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
         }	
-
-
 		$Insurance->created_user_id = Auth::user()->id;
       	$Insurance->customer_id = Session::get('customer_id');
 		$Insurance->insurance_type = $request->input('insurance_type');
 		$Insurance->status = '0';
 		$Insurance->insurance_date = $request->input('insurance_date');
+		$Insurance->insurance_expiry_date = $request->input('insurance_expiry_date');
 		$Insurance->sm_ssm_name = $request->input('sm_ssm');
 		$Insurance->payonehub_code = $request->input('advisor_code');
 		$Insurance->policybazaar_code = $request->input('policybazaar_code');
 		$Insurance->advisor_name = $request->input('advisor_name');
 		$Insurance->application_no = $request->input('application_number');
 		$Insurance->company_name = $request->input('company_name');
-
+		$Insurance->insurance_expiry_date = $request->input('insurance_expiry_date');
         $Insurance->save();
 
         Session::put('insurance_type', $Insurance->id);

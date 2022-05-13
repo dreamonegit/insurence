@@ -9,9 +9,8 @@ use DB;
 use App\Models\User;
 use App\Models\Customers;
 use App\Models\Insurance;
-use App\Models\Motorinsurance;
-use App\Models\Healthinsurance;
-use App\Models\Life_Insurance;
+use App\Exports\StaffExports;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\State;
 use Session;
 use Redirect;
@@ -58,6 +57,7 @@ class CustomerController extends Controller
             $this->data["get_insurance_details"] = Healthinsurance::where('customer_id', $id)->get();
 
             $this->data["state"] = $this->state->get();
+
             return view('admin.customer.view-customer',$this->data);
     }
 

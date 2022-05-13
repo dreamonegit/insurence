@@ -12,6 +12,8 @@ use App\Models\State;
 use App\Models\Insurance;
 use Carbon\Carbon;
 use Session;
+use App\Exports\StaffExports;
+use Maatwebsite\Excel\Facades\Excel;
 use Redirect;
 use Auth, Validator, Response;
 class AdminController extends Controller
@@ -182,6 +184,16 @@ class AdminController extends Controller
 			$this->data['title'] = 'My Profile';
 			return view('admin.mypofile', $this->data);			
 		} 		
+	}
+	public function exportstaff(Request $request){
+		
+		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
+		
+	}
+	public function exportcustomerdetails(Request $request){
+		
+		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
+		
 	}
 	 public function logout(){
 		

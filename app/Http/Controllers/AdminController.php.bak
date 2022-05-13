@@ -12,6 +12,8 @@ use App\Models\State;
 use App\Models\Insurance;
 use Carbon\Carbon;
 use Session;
+use App\Exports\StaffExports;
+use Maatwebsite\Excel\Facades\Excel;
 use Redirect;
 use Auth, Validator, Response;
 class AdminController extends Controller
@@ -41,9 +43,9 @@ class AdminController extends Controller
 			//echo "<pre>"; print_r($this->data['healthusercount']); exit;
 			$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->where('staff_id',Auth::user()->id)->count();
 			$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->where('staff_id',Auth::user()->id)->count();
-			$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
-			$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
-			$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->count();
+			$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('staff_id',Auth::user()->id)->count();
+			$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
+			$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
 		}else{
 			$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->with('countstaffcustomer')->count();
 			$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
@@ -110,9 +112,19 @@ class AdminController extends Controller
 	}
 	public function listcustomerdetails(){
 		if(Auth::user()->role!=1){
-			$this->data["customers"] = Customers::where('status','1')->where('staff_id',Auth::user()->id)->get();
+			$this->data["customers"] = Customers::select(
+                            "customers.*", 
+                            "state.StateName as state_name"
+                        )->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('staff_id',Auth::user()->id)->get();
 		}else{
-			$this->data["customers"] = Customers::get();
+			//$this->data["customers"] = Customers::get();
+
+			$this->data["customers"] = Customers::select(
+                            "customers.*", 
+                            "state.StateName as state_name"
+                        )
+                        ->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('is_deleted','0')->get();
+
 		}
 	return view('admin.customer.list-customerdetails',$this->data);
 	}
@@ -126,6 +138,7 @@ class AdminController extends Controller
         } else {
             $customers = new Customers();
         }		
+
         $customers ->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');
 		$customers->mobile = $request->input('mobile');
@@ -134,7 +147,7 @@ class AdminController extends Controller
 		$customers->city = $request->input('city');
         $customers->state = $request->input('state');		
 		$customers->country = $request->input('country');
-		$customers->status = $request->input('status');
+		//$customers->status = $request->input('status');
         $customers->save();
 		return redirect('/admin/list-customerdetails')->with('message', 'successfully customer details added...');	
 	}
@@ -172,6 +185,12 @@ class AdminController extends Controller
 			return view('admin.mypofile', $this->data);			
 		} 		
 	}
+	public function exportstaff(Request $request){
+		
+		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
+		
+	}
+
 	 public function logout(){
 		
 		Session::flush();
