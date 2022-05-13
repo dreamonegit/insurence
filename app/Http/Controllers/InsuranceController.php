@@ -87,7 +87,7 @@ class InsuranceController extends Controller
     	}
     	else
     	{
-    		$this->data["insurance"] = Insurance::where("id", Session::get('insurance_type'))->first();
+    		$this->data["insurance"] = Healthinsurance::where("id", Session::get('insurance_type'))->first();
 
         	return view('insurance.steptwo',$this->data);
         }
@@ -130,7 +130,7 @@ class InsuranceController extends Controller
     	if(empty(Session::get('insurance_type'))){
     		return view('insurance.health');
         } else {
-            $this->data["healthinsurance"] = Healthinsurance::where("id", Session::get('insurance_type'))->first();
+            $this->data["insurance"] = Healthinsurance::where("id", Session::get('insurance_type'))->first();
 
         	return view('insurance.health',$this->data);
         }		
@@ -181,7 +181,7 @@ class InsuranceController extends Controller
 
     public function editinsurance($id)
     {
-    	$Insurance = Insurance::where("id", $id)->first();
+    	$Insurance = Healthinsurance::where("id", $id)->first();
     	Session::put('insurance_type', $id);
     	Session::put('customer_id', $Insurance->customer_id);
 

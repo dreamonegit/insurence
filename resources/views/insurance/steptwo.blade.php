@@ -41,28 +41,28 @@
                             
                                 <div class="form-group col-md-6">
                                     <label class="required">Insurance Date</label>
-                                    <input type="date" class="form-control form-control-lg" name="insurance_date" placeholder="Enter the Insurance Date" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="date" class="form-control form-control-lg" name="insurance_date" placeholder="Enter the Insurance Date" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->insurance_date }}@endif">
                                 </div>
                             </div>
 
                              <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">SM/SSM Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="sm_ssm" placeholder="Enter the SM/SSM Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="sm_ssm" placeholder="Enter the SM/SSM Name" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->sm_ssm_name }}@endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">Advisor's Payone hub Code</label>
-                                    <input type="text" class="form-control form-control-lg" name="advisor_code" placeholder="Enter the Advisor's Payone hub Code" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="advisor_code" placeholder="Enter the Advisor's Payone hub Code" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->payonehub_code }}@endif">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">Advisor's Policybazaar code</label>
-                                    <input type="text" class="form-control form-control-lg" name="policybazaar_code" placeholder="Enter the Advisor's Policybazaar code" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="policybazaar_code" placeholder="Enter the Advisor's Policybazaar code" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->policybazaar_code }} @endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">Advisor Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="advisor_name" placeholder="Enter the Advisor Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="advisor_name" placeholder="Enter the Advisor Name" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->advisor_name }}@endif">
                                 </div>
                             </div>
 
@@ -71,11 +71,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">Application Number</label>
-                                    <input type="text" class="form-control form-control-lg" name="application_number" placeholder="Enter the Application Number" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="application_number" placeholder="Enter the Application Number" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->application_no }}@endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">Company Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="company_name" placeholder="Enter the Company Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="company_name" placeholder="Enter the Company Name" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->company_name }}@endif">
                                 </div>
                             </div>                
                     </div>

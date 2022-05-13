@@ -32,22 +32,22 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">Plan Name</label>
-                                    <input type="text" class="form-control form-control-lg" name="plan_name" placeholder="Enter the Plan Name" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="plan_name" placeholder="Enter the Plan Name" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->plan_name }}@endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">Sum Assumed</label>
-                                    <input type="text" class="form-control form-control-lg" name="sum_assumed" placeholder="Enter the Sum Assumed" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="sum_assumed" placeholder="Enter the Sum Assumed" aria-label="Staff Name" value="@if(isset($insurance)){{$insurance->sum_assured}}@endif">
                                 </div>
                             </div>        
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">EMI</label>
-                                    <input type="number" class="form-control form-control-lg" name="emi" placeholder="Enter the EMI" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="number" class="form-control form-control-lg" name="emi" placeholder="Enter the EMI" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->emi }}@endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">EMI Month</label>
-                                    <input type="number" class="form-control form-control-lg" name="emi_month" placeholder="Enter the EMI Month" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="number" class="form-control form-control-lg" name="emi_month" placeholder="Enter the EMI Month" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->emi_month }}@endif">
                                 </div>
                             </div>
 
@@ -55,12 +55,12 @@
 
                                 <div class="form-group col-md-6">
                                     <label class="required">EMI Due</label>
-                                    <input type="text" class="form-control form-control-lg" name="emi_due" placeholder="Enter the EMI Due" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="emi_due" placeholder="Enter the EMI Due" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->emi_due }}@endif">
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label class="required">Premium Paying Term</label>
-                                    <input type="number" class="form-control form-control-lg" name="premium_term" placeholder="Enter the Premium Paying Term" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="number" class="form-control form-control-lg" name="premium_term" placeholder="Enter the Premium Paying Term" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->premium_paying_term }}@endif">
                                 </div>
                               
                             </div>
@@ -68,11 +68,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">Policy Term (Total Coverage)</label>
-                                    <input type="text" class="form-control form-control-lg" name="policy_term" placeholder="Enter the Policy Term (Total Coverage)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="policy_term" placeholder="Enter the Policy Term (Total Coverage)" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->policy_term }}@endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">Gross Premium  (With GST)</label>
-                                    <input type="text" class="form-control form-control-lg" name="gross_premium" placeholder="Enter the Gross Premium  (With GST)" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="gross_premium" placeholder="Enter the Gross Premium  (With GST)" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->gross_premium }}@endif">
                                 </div>
                                 
                             </div>
@@ -80,11 +80,11 @@
                              <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="required">Net Premium</label>
-                                    <input type="text" class="form-control form-control-lg" name="net_premium" placeholder="Enter the Net Premium" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->last_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="net_premium" placeholder="Enter the Net Premium" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->net_premium }}@endif">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="required">Policy No</label>
-                                    <input type="text" class="form-control form-control-lg" name="policy_no" placeholder="Enter the Policy No" aria-label="Staff Name" value="@if(isset($customers)){{ $customers->first_name }} @endif">
+                                    <input type="text" class="form-control form-control-lg" name="policy_no" placeholder="Enter the Policy No" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->policy_no }}@endif">
                                 </div>
                             </div>
                             <!-- <div class="form-group">

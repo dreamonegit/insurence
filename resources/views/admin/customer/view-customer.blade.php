@@ -111,9 +111,7 @@
 							        <th>Policy Number</th>
 									<th>Starting Date</th>
 									<th>Renewal Date</th>
-							        <th>Remarks</th>
 							        <th>Actions</th>
-									<th>Upload Document</th>
 							      </tr>
 							    </thead>
 							    <tbody>
@@ -121,12 +119,10 @@
 							    	@foreach($get_insurance_details as $insurance_details)
 							      <tr>
 							        <td>{{ $insurance_details['insurance_type'] }}</td>
-							        <td>@isset($insurance_details['previous_year']) {{ $insurance_details['previous_year'] }} @endif</td>
-									<td>@isset($insurance_details['insurance_starting_date']) {{ $insurance_details['insurance_starting_date'] }} @endif</td>
-									<td>@isset($insurance_details['insurance_renewal_date']) {{ $insurance_details['insurance_renewal_date'] }} @endif</td>
-							        <td>@isset($insurance_details['remarks']) {{ $insurance_details['remarks'] }} @endif</td>
-							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['insurance_id']) }}">Edit</a></td>
-									<td><a href="#" class="badge badge-info linkdec" data-bs-toggle="modal" data-bs-target="#smallModal{{ $insurance_details['insurance_id'] }}">View </a></td>
+							        <td>@isset($insurance_details['policy_no']) {{ $insurance_details['policy_no'] }} @endif</td>
+									<td>@isset($insurance_details['insurance_date']) {{ $insurance_details['insurance_date'] }} @endif</td>
+									<td>@isset($insurance_details['insurance_date']) {{ $insurance_details['insurance_date'] }} @endif</td>
+							        <td><a class="badge badge-info linkdec" href="{{ url('/insurance/edit-insurance/'.$insurance_details['id']) }}">Edit</a></td>
 								  </tr>
 								  <div class="modal fade" id="smallModal{{ $insurance_details['insurance_id'] }}" tabindex="-1" aria-hidden="true">
 										<div class="modal-dialog modal-sm" role="document">

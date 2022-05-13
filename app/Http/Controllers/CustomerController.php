@@ -55,49 +55,9 @@ class CustomerController extends Controller
     public function viewcustomer($id)
     {
             $this->data["customers"] = Customers::where("id", $id)->first();
-            $get_insurance = Insurance::where('customer_id', $id)->get();
+            $this->data["get_insurance_details"] = Healthinsurance::where('customer_id', $id)->get();
 
             $this->data["state"] = $this->state->get();
-
-
-            $return_policy = array();
-
-            foreach($get_insurance as $key => $value)
-            {
-
-                if($value['insurance_type'] == '1')
-                {
-                    $get_policy_details = Healthinsurance::where("insurance_type_id", $value['id'])->first();
-
-                    $return_policy[$key]['insurance_type'] = 'Health';
-                }elseif($value['insurance_type'] == '2')
-                {
-                    $get_policy_details = Motorinsurance::where("insurance_type_id", $value['id'])->first();
-                    $return_policy[$key]['insurance_type'] = 'Motor';
-                }elseif($value['insurance_type'] == '3')
-                {
-                    $get_policy_details = Life_insurance::where("insurance_type_id", $value['id'])->first();
-                    $return_policy[$key]['insurance_type'] = 'Life';
-                }
-				if(isset($get_policy_details->previous_year)){
-					$return_policy[$key]['previous_year'] = $get_policy_details->previous_year;
-				}
-				if(isset($get_policy_details->remarks)){
-					$return_policy[$key]['remarks'] = $get_policy_details->remarks;
-				}
-				if(isset($get_policy_details->insurance_starting_date)){
-					$return_policy[$key]['insurance_starting_date'] = $get_policy_details->insurance_starting_date;
-				}
-				if(isset($get_policy_details->insurance_renewal_date)){
-					$return_policy[$key]['insurance_renewal_date'] = $get_policy_details->insurance_renewal_date;
-				}
-				$return_policy[$key]['previous_document'] = $get_policy_details->previous_document;
-				$return_policy[$key]['other_document'] = $get_policy_details->other_document;
-                $return_policy[$key]['insurance_id'] = $value['id'];
-            }
-
-            $this->data["get_insurance_details"] = $return_policy;
-
             return view('admin.customer.view-customer',$this->data);
     }
 
