@@ -22,4 +22,10 @@ class Customers extends Authenticatable
 			return $staff->name;
 		}	
 	}
+	public static function getcustomername($id){
+		$customer = self::where('id',$id)->first();
+		if(isset($customer->first_name)){
+			return $customer->first_name;
+		}			
+	}
 }

@@ -1,3 +1,6 @@
+	<?php use App\Models\Healthinsurance; use App\Models\Customers; 
+			$getexpiryuser = Healthinsurance::getexpirynotification();
+	?>
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a>
@@ -9,6 +12,36 @@
           </button>
 
           <ul class="navbar-nav navbar-nav-right">
+			<li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="true">
+                <i class="mdi mdi-bell-outline"></i>
+                <span class="notification"><?php if(count($getexpiryuser) > 0) { echo count($getexpiryuser); }?></span>
+              </a>
+			@if(isset($getexpiryuser))
+				@if(count($getexpiryuser) > 0)
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown" data-bs-popper="none">
+                <h6 class="p-3 mb-0">Notifications</h6>
+                <div class="dropdown-divider"></div>
+						@foreach($getexpiryuser as $getexpiryuserval)
+							<a class="dropdown-item preview-item" href="{{ url('/customer/view-customer/'.$getexpiryuserval->customer_id) }}">
+							  <div class="preview-thumbnail">
+								<div class="preview-icon bg-success">
+								  <i class="mdi mdi-calendar"></i>
+								</div>
+							  </div>
+							  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+								<h6 class="preview-subject font-weight-normal mb-1">{{ Customers::getcustomername($getexpiryuserval->customer_id) }}</h6>
+								<p class="text-gray ellipsis mb-0"> Expiry date :  {{ date('Y-m-d', strtotime($getexpiryuserval->insurance_expiry_date)) }}</p>
+							  </div>
+							</a>
+						@endforeach
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div>
+                
+              </div>
+					@endif
+				@endif
+            </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">

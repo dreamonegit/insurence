@@ -19,6 +19,13 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
 	<style>
+	.notification{
+		margin-top: -18px;
+		color: red;
+		/* background-color: red; */
+		/* font-size: 13px; */
+		font-weight: 700;		
+	}
 	.form-control {
 		border: 1px solid #d1dae2!important;
 	}

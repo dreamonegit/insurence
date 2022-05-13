@@ -20,6 +20,10 @@
 				<div style="width:10%;margin-left: 84%;">
 					<a href="{{ url('admin/add-staff') }}" class="p-3 btn btn-outline-success btn-fw">Add Staff</a>
 				</div>
+				<div style="width:10%;margin-left: 71%;margin-top: -46px;">
+					<a href="{{ url('admin/export-staff') }}" class="p-3 btn btn-outline-success btn-fw">Export Staff</a>
+				</div>
+			</div>
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">

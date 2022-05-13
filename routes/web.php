@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin',ClearFormSes
 	Route::get('/edit-staff/{id}', [App\Http\Controllers\AdminController::class, 'addstaff'])->middleware('admin');
 	Route::get('/delete-staff/{id}', [App\Http\Controllers\AdminController::class, 'deletestaff'])->middleware('admin');
 	Route::post('/save-staff', [App\Http\Controllers\AdminController::class, 'savestaff'])->middleware('admin');
+	Route::get('/export-staff', [App\Http\Controllers\AdminController::class, 'exportstaff'])->middleware('admin');
 	Route::post('/state', [App\Http\Controllers\AdminController::class, 'state'])->middleware('admin');
 	
 	Route::get('/list-customerdetails', [App\Http\Controllers\AdminController::class, 'listcustomerdetails'])->middleware('admin');

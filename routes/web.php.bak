@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\ClearFormSession;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin']], function(){
+Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin',ClearFormSession::class]], function(){
 	
 	Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home')->middleware('admin');
 	Route::get('/list-staff', [App\Http\Controllers\AdminController::class, 'liststaff'])->middleware('admin');
@@ -35,7 +36,6 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','admin']], function(
 	Route::post('/save-customerdetails', [App\Http\Controllers\AdminController::class, 'savecustomerdetails'])->middleware('admin');
 	Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout'])->middleware('admin');
 	Route::any('/myprofile', [App\Http\Controllers\AdminController::class, 'myprofile'])->middleware('admin');
-	//Route::post('/updateprofile', [App\Http\Controllers\AdminController::class, 'updateprofile'])->middleware('admin');
 
 });
 
@@ -53,12 +53,9 @@ Route::group(['prefix' => 'insurance',  'middleware' => ['auth','admin']], funct
 
 
 	Route::get('/health-insurance', [App\Http\Controllers\InsuranceController::class, 'healthinsurance'])->name('healthinsurance');
-	Route::get('/motor-insurance', [App\Http\Controllers\InsuranceController::class, 'motorinsurance'])->name('motorinsurance');
-    Route::get('/life-insurance', [App\Http\Controllers\InsuranceController::class, 'lifeinsurance'])->name('lifeinsurance');
-
+	
 	Route::post('/save-health-insurance', [App\Http\Controllers\InsuranceController::class, 'savehealthinsurance']);
-	Route::post('/save-motor-insurance', [App\Http\Controllers\InsuranceController::class, 'savemotorinsurance']);
-	Route::post('/save-life-insurance', [App\Http\Controllers\InsuranceController::class, 'savelifeinsurance']);
+	
 
 
 	Route::get('/insurance-complete', [App\Http\Controllers\InsuranceController::class, 'insurance_complete'])->name('insurance_complete');
@@ -69,7 +66,7 @@ Route::group(['prefix' => 'insurance',  'middleware' => ['auth','admin']], funct
 
 
 
-Route::group(['prefix' => 'customer',  'middleware' => ['auth','admin']], function(){
+Route::group(['prefix' => 'customer',  'middleware' => ['auth','admin',ClearFormSession::class]], function(){
 
 	Route::get('/view-customer/{id}', [App\Http\Controllers\CustomerController::class, 'viewcustomer'])->name('viewcustomer');
 	
