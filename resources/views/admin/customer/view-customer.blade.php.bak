@@ -109,7 +109,7 @@
 							      <tr>
 							        <th>Insurance Type</th>
 							        <th>Policy Number</th>
-									<th>Insurance Date</th>
+									<th>Starting Date</th>
 									<th>Renewal Date</th>
 							        <th>Actions</th>
 							      </tr>

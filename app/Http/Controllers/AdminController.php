@@ -13,6 +13,7 @@ use App\Models\Insurance;
 use Carbon\Carbon;
 use Session;
 use App\Exports\StaffExports;
+use App\Exports\CustomerExports;
 use Maatwebsite\Excel\Facades\Excel;
 use Redirect;
 use Auth, Validator, Response;
@@ -192,7 +193,7 @@ class AdminController extends Controller
 	}
 	public function exportcustomerdetails(Request $request){
 		
-		 return Excel::download(new StaffExports($request->all()), 'staff.xlsx');
+		 return Excel::download(new CustomerExports($request->all()), 'customer.xlsx');
 		
 	}
 	 public function logout(){
