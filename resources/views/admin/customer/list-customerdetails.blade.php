@@ -19,6 +19,15 @@
             </div>
 				<form action="{{ url('admin/export-customerdetails') }}" method="post">@csrf
 					<div class="row">
+				   <div class="form-group col-md-3">
+						  <select class="form-control form-control-lg form-select" id="insurance_type" name="insurance_type">
+						   <option value="">----Choose the Insurance----</option>
+							<option value="0" @if(isset($insurance))@if($insurance->insurance_type==1) {{ "selected" }} @endif @endif > All</option>
+							<option value="1" @if(isset($insurance))@if($insurance->insurance_type==1) {{ "selected" }} @endif @endif >Health Insurance</option>
+							<option value="2" @if(isset($insurance))@if($insurance->insurance_type==2) {{ "selected" }} @endif @endif >Motor Insurance</option>
+							<option value="3" @if(isset($insurance))@if($insurance->insurance_type==3) {{ "selected" }} @endif @endif >Life Insurance</option>
+						  </select>
+					</div>
 						<div class="form-group col-3">
 						  <input type="date" class="form-control form-control-lg" name="start_date" placeholder="Start Date" aria-label="customerdetails">
 						</div>

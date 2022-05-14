@@ -27,7 +27,7 @@ class StaffExports implements FromCollection,WithHeadings,WithMapping
             $row->name,
             $row->email,
 			$row->mobile,
-			$row->status == 1 ? 'Active' : 'In-Active',
+			$row->status == 0 ? 'Active' : 'In-Active',
             date('Y-m-d', strtotime($row->created_at)),
 			date('Y-m-d', strtotime($row->updated_at)),
         ];
