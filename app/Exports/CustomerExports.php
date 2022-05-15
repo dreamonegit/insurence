@@ -19,13 +19,37 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
 
     public function collection()
     {
-        return Healthinsurance::select('*','created_at','updated_at')->whereBetween('created_at', [$this->post['start_date'], $this->post['end_date']])->get();
+    	if($this->post['insurance_type'] == '0')
+    	{
+    		return Healthinsurance::select('*','created_at','updated_at')->where('status','1')->get();
+    	}
+    	else if($this->post['insurance_type'] > 0 && $this->post['start_date'] == '' || $this->post['end_date'] == '')
+    	{
+    		return Healthinsurance::select('*','created_at','updated_at')->where('insurance_type',$this->post['insurance_type'])->where('status','1')->get();
+    	}   
+    	else
+    	{
+        	return Healthinsurance::select('*','created_at','updated_at')->where('insurance_type',$this->post['insurance_type'])->where('status','1')->whereBetween('created_at', [$this->post['start_date'], $this->post['end_date']])->get();
+        }
     }
     public function map($row): array
     {
+    	if($row->insurance_type == '1')
+    	{
+    		$i_type = 'Health Insurance';
+    	}
+    	else if($row->insurance_type == '2'){
+    		$i_type = 'Motor Insurance';
+    	}
+    	else
+    	{
+    		$i_type = 'Life Insurance';
+    	}
+    	
+
         return [
 		    $row->customer_id,
-            $row->insurance_type,
+            $i_type,
 			$row->insurance_date,
 			$row->insurance_expiry_date,
             $row->sm_ssm_name,
