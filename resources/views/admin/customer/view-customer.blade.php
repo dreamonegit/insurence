@@ -118,7 +118,18 @@
 
 							    	@foreach($get_insurance_details as $insurance_details)
 							      <tr>
-							        <td>{{ $insurance_details['insurance_type'] }}</td>
+							        
+							        @if($insurance_details['insurance_type'] =='1') 
+							        		<td>Health Insurance</td>
+							        @elseif($insurance_details['insurance_type'] =='2')   
+							        		<td>Motor Insurance</td>
+							        @else
+							        		<td>Life Insurance</td>
+							        @endif
+
+      
+
+							      
 							        <td>@isset($insurance_details['policy_no']) {{ $insurance_details['policy_no'] }} @endif</td>
 									<td>@isset($insurance_details['insurance_date']) {{ $insurance_details['insurance_date'] }} @endif</td>
 									<td>@isset($insurance_details['insurance_expiry_date']) {{ $insurance_details['insurance_expiry_date'] }} @endif</td>
