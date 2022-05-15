@@ -49,11 +49,11 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
 
         return [
 		    $row->customer_id,
-            $i_type,
             $row->first_name." ".$row->last_name,
 			$row->mobile,
             $row->email,
             $row->city,
+            $i_type,
 			$row->insurance_date,
 			$row->insurance_expiry_date,
             $row->sm_ssm_name,
