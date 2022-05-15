@@ -21,7 +21,7 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
     {
     	if($this->post['insurance_type'] == '0')
     	{
-    		return Healthinsurance::select('*','created_at','updated_at')->where('status','1')->get();
+    		return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.status','1')->get();
     	}
     	else if($this->post['insurance_type'] > 0 && $this->post['start_date'] == '' || $this->post['end_date'] == '')
     	{
@@ -50,6 +50,10 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
         return [
 		    $row->customer_id,
             $i_type,
+            $row->first_name." ".$row->last_name,
+			$row->mobile,
+            $row->email,
+            $row->city,
 			$row->insurance_date,
 			$row->insurance_expiry_date,
             $row->sm_ssm_name,
@@ -77,6 +81,10 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
     {
         return [
 		    'Customer Id',
+		    'Customer Name',
+		    'Customer Mobile',
+		    'Customer Email',
+		   	'Customer City',
 			'Insurance Type',
 			'Insurance Date',
 			'Insurance Expiry Date',
