@@ -25,11 +25,11 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
     	}
     	else if($this->post['insurance_type'] > 0 && $this->post['start_date'] == '' || $this->post['end_date'] == '')
     	{
-    		return Healthinsurance::select('*','created_at','updated_at')->where('insurance_type',$this->post['insurance_type'])->where('status','1')->get();
+    		return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->get();
     	}   
     	else
     	{
-        	return Healthinsurance::select('*','created_at','updated_at')->where('insurance_type',$this->post['insurance_type'])->where('status','1')->whereBetween('created_at', [$this->post['start_date'], $this->post['end_date']])->get();
+        	return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereBetween('health_insurance.created_at', [$this->post['start_date'], $this->post['end_date']])->get();
         }
     }
     public function map($row): array
