@@ -54,8 +54,8 @@
                           <tr>
                             <th> ID </th>
                             <th> Name </th>
-							<th> Image </th>
-                            <th> Mobile </th>
+<!-- 							<th> Image </th>
+ -->                            <th> Mobile </th>
                             <th> E-mail </th>
                             <th> Status </th>
 							<th> Edit </th>
@@ -74,10 +74,10 @@
 									{{ $userval->name }}
 								  </td>
 
-								<td>
+							<!-- 	<td>
 								
 								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle">
-								</td>
+								</td> -->
 								  <td>
 									{{ $userval->mobile }}
 								  </td>
