@@ -134,7 +134,8 @@ class InsuranceController extends Controller
         	$Insurance = new Healthinsurance();
         } else {
             $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
-        }	
+        }
+		$Insurance->staff_id = Auth::user()->id;		
 		$Insurance->created_user_id = Auth::user()->id;
       	$Insurance->customer_id = Session::get('customer_id');
 		$Insurance->insurance_type = $request->input('insurance_type');
@@ -181,7 +182,7 @@ class InsuranceController extends Controller
             $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
         }	
 
-		
+		$Insurance->staff_id = Auth::user()->id;
 		$Insurance->plan_name = $request->input('plan_name');
 		$Insurance->sum_assured = $request->input('sum_assumed');
 		$Insurance->emi = $request->input('emi');
