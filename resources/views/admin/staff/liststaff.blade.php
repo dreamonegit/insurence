@@ -68,7 +68,7 @@
 							@foreach($user as $userval)
 							  <tr>
 								  <td>
-									{{ $userval->id }}
+									{{ ($loop->index + 1) }}
 								  </td>
 								  <td>
 									{{ $userval->name }}
