@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Customers;
 use App\Models\State;
 use App\Models\Insurance;
+use App\Models\Healthinsurance;
 use Carbon\Carbon;
 use Session;
 use App\Exports\StaffExports;
@@ -30,6 +31,7 @@ class AdminController extends Controller
 		$this->customers = new Customers();
 		$this->state = new State();
 		$this->insurance = new Insurance();
+		$this->insurancelist = new Healthinsurance();
     }
 
     /**
@@ -40,20 +42,20 @@ class AdminController extends Controller
     public function index()
     {
 		if(Auth::user()->role!=1){
-			$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->where('staff_id',Auth::user()->id)->count();
+			$this->data['healthusercount'] = $this->insurancelist->where('insurance_type',1)->where('status','1')->where('staff_id',Auth::user()->id)->count();
 			//echo "<pre>"; print_r($this->data['healthusercount']); exit;
-			$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->where('staff_id',Auth::user()->id)->count();
-			$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->where('staff_id',Auth::user()->id)->count();
-			$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('staff_id',Auth::user()->id)->count();
-			$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
-			$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
+			$this->data['motorusercount'] = $this->insurancelist->where('insurance_type',2)->where('status','1')->where('staff_id',Auth::user()->id)->count();
+			$this->data['lifeusercount'] = $this->insurancelist->where('insurance_type',3)->where('status','1')->where('staff_id',Auth::user()->id)->count();
+			$this->data['countweek'] = $this->insurancelist->where('status','1')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('staff_id',Auth::user()->id)->count();
+			$this->data['countmonth'] = $this->insurancelist->where('status','1')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
+			$this->data['countyear'] = $this->insurancelist->where('status','1')->whereYear('created_at', date('Y'))->where('staff_id',Auth::user()->id)->count();
 		}else{
-			$this->data['healthusercount'] = $this->insurance->where('insurance_type',1)->with('countstaffcustomer')->count();
-			$this->data['motorusercount'] = $this->insurance->where('insurance_type',2)->count();
-			$this->data['lifeusercount'] = $this->insurance->where('insurance_type',3)->count();
-			$this->data['countweek'] = $this->insurance->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
-			$this->data['countmonth'] = $this->insurance->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
-			$this->data['countyear'] = $this->insurance->whereYear('created_at', date('Y'))->count();
+			$this->data['healthusercount'] = $this->insurancelist->where('status','1')->where('insurance_type',1)->with('countstaffcustomer')->count();
+			$this->data['motorusercount'] = $this->insurancelist->where('status','1')->where('insurance_type',2)->count();
+			$this->data['lifeusercount'] = $this->insurancelist->where('status','1')->where('insurance_type',3)->count();
+			$this->data['countweek'] = $this->insurancelist->where('status','1')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+			$this->data['countmonth'] = $this->insurancelist->where('status','1')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
+			$this->data['countyear'] = $this->insurancelist->where('status','1')->whereYear('created_at', date('Y'))->count();
 		}
         return view('admin.index',$this->data);
     }
@@ -169,6 +171,7 @@ class AdminController extends Controller
 			$user->name = $request->input('name'); 
 			$user->email = $request->input('email'); 
 			$user->mobile = $request->input('mobile'); 
+			$user->password = $request->input('password'); 
 			$user->status = $request->input('status');
 			$image = $profile_images = '';   
 		   if ($request->file('profile_image')) {
@@ -193,7 +196,7 @@ class AdminController extends Controller
 	}
 	public function exportcustomerdetails(Request $request){
 		
-		 return Excel::download(new CustomerExports($request->all()), 'Customer.xlsx');
+		 return Excel::download(new CustomerExports($request->all()), 'customer.xlsx');
 		
 	}
 	 public function logout(){
