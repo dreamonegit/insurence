@@ -138,9 +138,38 @@ class AdminController extends Controller
 	public function savecustomerdetails(Request $request){
         if ($request->input("hid") != 0) {
             $customers = Customers::where("id", $request->input("hid"))->first();
+
+            if($customers->email != $request->input('email'))
+            {
+                $validator  =   Validator::make($request->all(), [
+                        'first_name' => 'required',
+                        'mobile' => 'required|digits:10',
+                        'email' => 'required|email|unique:customers'
+                 ]);  
+            }
+            else
+            {
+                $validator  =   Validator::make($request->all(), [
+                        'first_name' => 'required',
+                        'mobile' => 'required|digits:10',
+                        'email' => 'required|email'
+                 ]);  
+            }     
+            
         } else {
             $customers = new Customers();
-        }		
+
+            $validator  =   Validator::make($request->all(), [
+                        'first_name' => 'required',
+                        'mobile' => 'required|digits:10',
+                        'email' => 'required|email|unique:customers'
+                 ]);  
+        }	
+
+        if ($validator->fails()) {
+               $messages = $validator->messages();
+               return redirect()->back()->withErrors($messages)->withInput($request->all()); 
+        } 	
 
         $customers ->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');
@@ -171,7 +200,8 @@ class AdminController extends Controller
 			$user->name = $request->input('name'); 
 			$user->email = $request->input('email'); 
 			$user->mobile = $request->input('mobile'); 
-			$user->password = $request->input('password'); 
+		    $user->password = Hash::make($request->input('password'));
+		    $user->plain 	= $request->input('password'); 
 			$user->status = $request->input('status');
 			$image = $profile_images = '';   
 		   if ($request->file('profile_image')) {

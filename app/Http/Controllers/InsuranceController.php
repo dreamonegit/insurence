@@ -181,7 +181,7 @@ class InsuranceController extends Controller
             $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
         }	
 
-		
+		$Insurance->staff_id = Auth::user()->id;
 		$Insurance->plan_name = $request->input('plan_name');
 		$Insurance->sum_assured = $request->input('sum_assumed');
 		$Insurance->emi = $request->input('emi');

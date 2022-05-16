@@ -38,7 +38,7 @@ use Illuminate\Support\Str;
 						  <input type="date" class="form-control form-control-lg" placeholder="End Date" name="end_date" aria-label="exportcustomerdetails">
 						</div>
 						<div class="form-group col-md-3">
-						  <input type="submit" class="form-control form-control-lg" value="Download">
+						  <input type="submit" class="p-3 btn btn-outline-success btn-fw" value="Download">
 						</div>
 					</div>
 				</form>	

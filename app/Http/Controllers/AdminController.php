@@ -200,7 +200,6 @@ class AdminController extends Controller
 			$user->name = $request->input('name'); 
 			$user->email = $request->input('email'); 
 			$user->mobile = $request->input('mobile'); 
-		    $user->password = Hash::make($request->input('password'));
 		    $user->plain 	= $request->input('password'); 
 			$user->status = $request->input('status');
 			$image = $profile_images = '';   
