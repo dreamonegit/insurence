@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 use Maatwebsite\Excel\Concerns\WithMapping;
-
+use Carbon\Carbon;
 class CustomerExports implements FromCollection,WithHeadings,WithMapping
 {
 	 protected $post;
@@ -29,8 +29,9 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
     	}   
     	else
     	{
-        	return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereBetween('health_insurance.created_at', [$this->post['start_date'], $this->post['end_date']])->get();
-        }
+        	//return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereBetween('health_insurance.created_at', [$this->post['start_date'], $this->post['end_date']])->get();
+        	return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereDate('health_insurance.created_at','>=',Carbon::parse($this->post['start_date']))->whereDate('health_insurance.created_at','<=',Carbon::parse($this->post['end_date']))->get();
+		}
     }
     public function map($row): array
     {
