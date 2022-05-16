@@ -1,4 +1,7 @@
-<?php use App\Models\Customers; ?>
+<?php use App\Models\Customers;
+use Illuminate\Support\Str;
+
+ ?>
 @include('layouts.elements.admin.header') 
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
@@ -96,7 +99,7 @@
 								  </td> -->
 
 								  <td>
-									{{ $customersval->state_name }}
+								  	{{ strtolower($customersval->state_name) }}
 								  </td>
 								  <td>
 									{{ $customersval->city }}

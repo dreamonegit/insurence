@@ -51,11 +51,46 @@ class InsuranceController extends Controller
     }
 
     public function savecustomerdetails(Request $request){
+
+             
+        
+        
+
         if(empty(Session::get('customer_id'))){
         	$customers = new Customers();
+
+            $validator  =   Validator::make($request->all(), [
+                    'first_name' => 'required',
+                    'mobile' => 'required|digits:10',
+                    'email' => 'required|email|unique:customers'
+             ]);       
+
         } else {
             $customers = Customers::where("id", Session::get('customer_id'))->first();
+
+            if($customers->email != $request->input('email'))
+            {
+                $validator  =   Validator::make($request->all(), [
+                        'first_name' => 'required',
+                        'mobile' => 'required|digits:10',
+                        'email' => 'required|email|unique:customers'
+                 ]);  
+            }
+            else
+            {
+                $validator  =   Validator::make($request->all(), [
+                        'first_name' => 'required',
+                        'mobile' => 'required|digits:10',
+                        'email' => 'required|email'
+                 ]);  
+            }     
         }
+
+        if ($validator->fails()) {
+               $messages = $validator->messages();
+               return redirect()->back()->withErrors($messages)->withInput($request->all()); 
+        } 
+
 		$customers->staff_id = Auth::user()->id;		
         $customers->first_name = $request->input('first_name');		
 		$customers->last_name = $request->input('last_name');

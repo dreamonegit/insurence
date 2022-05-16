@@ -17,20 +17,28 @@
               </nav>
             </div>
 			
-				<form action="{{ url('admin/export-staff') }}" method="post">@csrf
-					<div class="row">
-						<div class="form-group col-md-3">
-						  <input type="submit" class="form-control form-control-lg" value="Download Staff">
-						</div>
-					</div>
-				</form>			
+			
 			
             <div class="row">
-				<div style="width:10%;margin-left: 84%;">
-					<a href="{{ url('admin/add-staff') }}" class="p-3 btn btn-outline-success btn-fw">Add Staff</a>
-				</div>
-			</div>
+            	<div class="col-6">
+              	<form action="{{ url('admin/export-staff') }}" method="post">
+              		@csrf
+									<div class="form-group col-md-6">
+						  			<input type="submit" class="p-3 btn btn-outline-success btn-fw" value="Download Staff">
+									</div>
+								</form>		
+							</div>
+
+							<div class="form-group col-6" >
+										<a style="float:right;" href="{{ url('admin/add-staff') }}" class="p-3 btn btn-outline-success btn-fw">Add Staff</a>
+							</div>	
+					</div>
+
+
               <div class="col-12 grid-margin">
+
+
+
                 <div class="card">
                   <div class="card-body">
 					@if (\Session::has('message'))
@@ -46,8 +54,8 @@
                           <tr>
                             <th> ID </th>
                             <th> Name </th>
-							<th> Image </th>
-                            <th> Mobile </th>
+<!-- 							<th> Image </th>
+ -->                            <th> Mobile </th>
                             <th> E-mail </th>
                             <th> Status </th>
 							<th> Edit </th>
@@ -60,16 +68,16 @@
 							@foreach($user as $userval)
 							  <tr>
 								  <td>
-									{{ $userval->id }}
+									{{ ($loop->index + 1) }}
 								  </td>
 								  <td>
 									{{ $userval->name }}
 								  </td>
 
-								<td>
+							<!-- 	<td>
 								
 								  <img src="{{ asset('storage/profile/'.$userval->profile_image) }}" class="rounded-circle">
-								</td>
+								</td> -->
 								  <td>
 									{{ $userval->mobile }}
 								  </td>
