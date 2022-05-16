@@ -34,20 +34,20 @@
 							<input type="hidden" name="hid" value="{{ $user->id }}"> 
 						@endif
 						<div class="form-group">
-						  <label>Staff Name</label>
+						  <label class="required">Staff Name</label>
 						  <input type="text" class="form-control form-control-lg" name="name" placeholder="Staff Name" aria-label="Staff Name" value="{{ auth::user()->name }}">
 						</div>
 						<div class="form-group">
-						  <label>E-mail</label>
+						  <label class="required">E-mail</label>
 						  <input type="text" required readonly="readonly" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="E-mail" value="{{ auth::user()->email }}">
 						</div>
 						<div class="form-group">
-						  <label>Mobile</label>
+						  <label class="required">Mobile</label>
 						  <input type="text" class="form-control form-control-lg"  name="mobile" placeholder="Mobile" aria-label="Mobile" value="{{ auth::user()->mobile }}">
 						</div>
 						<div class="form-group">
-						  <label>Password</label>
-						  <input type="text" class="form-control form-control-lg"  name="plain" placeholder="Password" aria-label="Mobile" value="{{ auth::user()->plain }}">
+						  <label class="required">Password</label>
+						  <input type="text" class="form-control form-control-lg"  name="password" placeholder="Password" aria-label="Mobile" value="{{ auth::user()->plain }}">
 						</div>
 						<div class="form-group">
 						  <label>Profile Image</label>
