@@ -113,7 +113,7 @@ class AdminController extends Controller
 		$user = User::where('id',$id)->delete();
 		return redirect('/admin/list-staff')->withErrors(['sucessfully staff Deleted']);
 	}
-	public function listcustomerdetails(){
+	public function listcustomerdetails($id=''){
 		if(Auth::user()->role!=1){
 			$this->data["customers"] = Customers::select(
                             "customers.*", 
@@ -121,15 +121,29 @@ class AdminController extends Controller
                         )->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('staff_id',Auth::user()->id)->get();
 		}else{
 			//$this->data["customers"] = Customers::get();
-
-			$this->data["customers"] = Customers::select(
-                            "customers.*", 
-                            "state.StateName as state_name"
-                        )
-                        ->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('is_deleted','0')->get();
-
+			if($id)
+			{
+				$this->data["customers"] = Customers::select(
+	                            "customers.*", 
+	                            "state.StateName as state_name"
+	                        )
+	                        ->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')
+	                        ->where('staff_id',$id)
+	                        ->where('is_deleted','0')
+	                        ->get();
+			}
+			else
+			{
+				$this->data["customers"] = Customers::select(
+	                            "customers.*", 
+	                            "state.StateName as state_name"
+	                        )
+	                        ->leftJoin("state", "state.StateID", "=", "customers.state")->where('status','1')->where('is_deleted','0')->get();
+	        }
 		}
-	return view('admin.customer.list-customerdetails',$this->data);
+
+		$this->data['cid'] = $id;
+		return view('admin.customer.list-customerdetails',$this->data);
 	}
 	public function addcustomerdetails(){
 		$this->data["state"] = $this->state->get();	

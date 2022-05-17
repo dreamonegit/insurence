@@ -41,6 +41,7 @@ use Illuminate\Support\Str;
 						  <input type="submit" class="p-3 btn btn-outline-success btn-fw" value="Download">
 						</div>
 					</div>
+					<input type="hidden" value="{{  $cid }}" name="cid" />
 				</form>	
             <div class="row">
 				<!-- <div style="width:10%;margin-left: 84%;">

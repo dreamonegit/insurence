@@ -21,17 +21,26 @@ class CustomerExports implements FromCollection,WithHeadings,WithMapping
     {
     	if($this->post['insurance_type'] == '0')
     	{
-    		return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.status','1')->get();
+    		$rquery =  Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.status','1');
     	}
     	else if($this->post['insurance_type'] > 0 && $this->post['start_date'] == '' || $this->post['end_date'] == '')
     	{
-    		return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->get();
+    		$rquery = Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1');
     	}   
     	else
     	{
         	//return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereBetween('health_insurance.created_at', [$this->post['start_date'], $this->post['end_date']])->get();
-        	return Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereDate('health_insurance.created_at','>=',Carbon::parse($this->post['start_date']))->whereDate('health_insurance.created_at','<=',Carbon::parse($this->post['end_date']))->get();
+        	$rquery = Healthinsurance::select('health_insurance.*','customers.*')->leftJoin("customers", "customers.id", "=", "health_insurance.customer_id")->where('health_insurance.insurance_type',$this->post['insurance_type'])->where('health_insurance.status','1')->whereDate('health_insurance.created_at','>=',Carbon::parse($this->post['start_date']))->whereDate('health_insurance.created_at','<=',Carbon::parse($this->post['end_date']));
 		}
+
+		if($this->post['cid'] != '')
+		{
+			$rquery->where('health_insurance.staff_id',$this->post['cid']);
+		}
+
+		$rquery = $rquery->get(); 
+
+		return $rquery;
     }
     public function map($row): array
     {

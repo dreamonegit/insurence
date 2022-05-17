@@ -97,7 +97,7 @@
 									<a class="badge badge-info linkdec" href="{{ url('/admin/edit-staff/'.$userval->id) }}">Edit</a>
 								  </td>
 		                            <td>
-									<a class="badge badge-danger linkdec" href="{{ url('/admin/delete-staff/'.$userval->id) }}">Delete</a>
+									<a class="badge badge-danger linkdec" href="{{ url('/admin/list-customerdetails/'.$userval->id) }}">View Customers</a>
 									</td>
 							  </tr>
 							@endforeach
