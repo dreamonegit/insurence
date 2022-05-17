@@ -80,7 +80,13 @@
                                     <label class="required">Company Name</label>
                                     <input type="text" class="form-control form-control-lg" name="company_name" placeholder="Enter the Company Name" aria-label="Staff Name" value="@if(isset($insurance)){{ $insurance->company_name }}@endif">
                                 </div>
-                            </div>                
+                            </div>  
+                            <div class="row" id="vehicletype" @if(isset($insurance))@if($insurance->insurance_type==2) style="display:block" @endif @else style="display:none" @endif>
+                                <div class="form-group col-md-6">
+                                    <label class="required">Vehicle Type</label>
+                                    <input type="text" class="form-control form-control-lg" name="vehicletype" placeholder="Vehicle Type" aria-label="Vehicle Type" value="@if(isset($insurance)){{ $insurance->vehicletype }}@endif">
+                                </div>
+                            </div> 							
                     </div>
                     <div class="card-footer">
                         <div class="row">
@@ -142,4 +148,11 @@
                 company_name: "Company Name is required",
             }
         });
+		$('#insurance_type').on('change',function(){
+			if($(this).val()==2){
+				$('#vehicletype').css('display','block');
+			}else{
+				$('#vehicletype').css('display','none');
+			}
+		});
     </script>
