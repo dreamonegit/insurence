@@ -139,6 +139,7 @@ class InsuranceController extends Controller
 		$Insurance->created_user_id = Auth::user()->id;
       	$Insurance->customer_id = Session::get('customer_id');
 		$Insurance->insurance_type = $request->input('insurance_type');
+		$Insurance->vehicletype = $request->input('vehicletype');
 		$Insurance->status = '1';
 		$Insurance->insurance_date = $request->input('insurance_date');
 		$Insurance->insurance_expiry_date = $request->input('insurance_expiry_date');

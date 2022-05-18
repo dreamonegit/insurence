@@ -134,10 +134,12 @@ class InsuranceController extends Controller
         	$Insurance = new Healthinsurance();
         } else {
             $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
-        }	
+        }
+		$Insurance->staff_id = Auth::user()->id;		
 		$Insurance->created_user_id = Auth::user()->id;
       	$Insurance->customer_id = Session::get('customer_id');
 		$Insurance->insurance_type = $request->input('insurance_type');
+		$Insurance->vechical_type = $request->input('vechical_type');
 		$Insurance->status = '1';
 		$Insurance->insurance_date = $request->input('insurance_date');
 		$Insurance->insurance_expiry_date = $request->input('insurance_expiry_date');
@@ -181,7 +183,7 @@ class InsuranceController extends Controller
             $Insurance = Healthinsurance::where("id", Session::get('insurance_type'))->first();
         }	
 
-		
+		$Insurance->staff_id = Auth::user()->id;
 		$Insurance->plan_name = $request->input('plan_name');
 		$Insurance->sum_assured = $request->input('sum_assumed');
 		$Insurance->emi = $request->input('emi');

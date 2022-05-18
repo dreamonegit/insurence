@@ -59,7 +59,7 @@
                             <th> E-mail </th>
                             <th> Status </th>
 							<th> Edit </th>
-							<th> Delete </th>
+							<th> View </th>
                           </tr>
                         </thead>
                         <tbody>
