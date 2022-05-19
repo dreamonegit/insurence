@@ -149,7 +149,7 @@
                 advisor_name: "Advisor Name is required",
                 application_no: "Application Number is required",
                 company_name: "Company Name is required",
-				vehicletype: "Vehicle Type is required",
+				vehicletype: "Company Name is required",
             }
         });
 		$('#insurance_type').on('change',function(){
