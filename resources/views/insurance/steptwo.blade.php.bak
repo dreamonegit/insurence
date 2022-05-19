@@ -118,6 +118,9 @@
                 insurance_date: {
                     required: true
                 },
+                insurance_expiry_date: {
+                    required: true
+                },
                 sm_ssm: {
                     required: true
                 },
@@ -143,13 +146,14 @@
              messages: {
                 insurance_type: "Insurance Type is required",
                 insurance_date: "Insurance Type is required",
+				insurance_expiry_date: "Expiry date is required",
                 sm_ssm: "SM/SSM Name is required",
                 advisor_code: "Advisor's Payone hub Code is required",
                 policybazaar_code: "Advisor's Policybazaar code is required",
                 advisor_name: "Advisor Name is required",
                 application_no: "Application Number is required",
                 company_name: "Company Name is required",
-				vehicletype: "Company Name is required",
+				vehicletype: "Vehicle Type is required",
             }
         });
 		$('#insurance_type').on('change',function(){

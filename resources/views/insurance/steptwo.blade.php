@@ -118,6 +118,9 @@
                 insurance_date: {
                     required: true
                 },
+                insurance_expiry_date: {
+                    required: true
+                },
                 sm_ssm: {
                     required: true
                 },
@@ -143,6 +146,7 @@
              messages: {
                 insurance_type: "Insurance Type is required",
                 insurance_date: "Insurance Type is required",
+				insurance_expiry_date: "Expiry Date is required",
                 sm_ssm: "SM/SSM Name is required",
                 advisor_code: "Advisor's Payone hub Code is required",
                 policybazaar_code: "Advisor's Policybazaar code is required",
